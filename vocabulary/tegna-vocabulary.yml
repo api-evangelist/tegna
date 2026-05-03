@@ -1,0 +1,118 @@
+vocabulary:
+  provider: TEGNA
+  description: >-
+    Vocabulary for TEGNA Inc., covering broadcast media, digital advertising,
+    OTT/CTV streaming, audience targeting, and local TV market concepts.
+  version: '2026-05-03'
+  terms:
+    - term: AudienceOne
+      definition: >-
+        TEGNA's first-party data targeting platform enabling advertisers to
+        reach audiences across TEGNA's 64 local TV brands without relying on
+        third-party cookies. Uses privacy-first targeting based on TEGNA's
+        owned audience data.
+      synonyms:
+        - TEGNA AudienceOne
+        - First-Party Data Platform
+      relatedTerms:
+        - Audience Segment
+        - DMA Market
+
+    - term: Premion
+      definition: >-
+        TEGNA's over-the-top (OTT) and connected TV (CTV) advertising platform
+        delivering targeted video ads across premium streaming services including
+        Roku, Hulu, Amazon Fire TV, Apple TV, and Samsung TV.
+      synonyms:
+        - OTT Platform
+        - TEGNA Premion
+      relatedTerms:
+        - OTT
+        - CTV
+        - Streaming Advertising
+
+    - term: OTT
+      definition: >-
+        Over-the-top video delivery - streaming content delivered via the
+        internet directly to viewers on connected devices, bypassing traditional
+        cable and satellite distribution.
+      synonyms:
+        - Over-the-Top
+        - Streaming TV
+      relatedTerms:
+        - CTV
+        - Premion
+
+    - term: CTV
+      definition: >-
+        Connected TV - television sets that are directly connected to the
+        internet via smart TV platforms (Roku, Samsung, LG) or streaming
+        devices (Fire TV, Apple TV, Chromecast).
+      synonyms:
+        - Connected Television
+        - Smart TV Advertising
+      relatedTerms:
+        - OTT
+        - Premion
+
+    - term: DMA Market
+      definition: >-
+        Designated Market Area - a geographic television market defined by
+        Nielsen. TEGNA operates in 51 DMA markets across the United States.
+      synonyms:
+        - Designated Market Area
+        - Television Market
+        - Local Market
+      relatedTerms:
+        - TEGNA
+        - Local Television
+
+    - term: CPM
+      definition: >-
+        Cost Per Mille (Thousand) - the price paid for 1,000 advertising
+        impressions. Standard unit for pricing digital and OTT/CTV advertising.
+      synonyms:
+        - Cost Per Thousand
+      relatedTerms:
+        - Impressions
+        - Campaign
+
+    - term: CPCV
+      definition: >-
+        Cost Per Completed View - the price paid for each video advertisement
+        that was watched to completion. Key OTT/CTV pricing metric used by Premion.
+      synonyms:
+        - Cost Per Completed Video
+      relatedTerms:
+        - Video Completion Rate
+        - OTT
+
+    - term: Video Completion Rate
+      definition: >-
+        The percentage of video ad impressions where the viewer watched the
+        advertisement to completion. Key performance metric for OTT/CTV campaigns.
+      synonyms:
+        - VCR
+        - Completion Rate
+      relatedTerms:
+        - CPCV
+        - OTT
+
+    - term: Geofencing
+      definition: >-
+        A location-based targeting capability in TEGNA AudienceOne that enables
+        advertisers to target users within a defined geographic boundary (radius
+        around a specific address or custom polygon).
+      relatedTerms:
+        - AudienceOne
+        - Audience Segment
+
+    - term: TEGNA Marketing Solutions
+      definition: >-
+        TEGNA's full-service agency offering including brand strategy, consumer
+        insights, creative production, attribution analytics, and campaign
+        management for local and national advertisers.
+      synonyms:
+        - TMS
+      relatedTerms:
+        - TEGNA

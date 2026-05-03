@@ -1,0 +1,97 @@
+extends:
+  - spectral:oas
+
+rules:
+  tegna-operation-ids-camel-case:
+    description: Operation IDs must use camelCase naming convention.
+    message: "Operation ID '{{value}}' must use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  tegna-operations-have-summaries:
+    description: All operations must have a summary.
+    message: "Operation must include a summary."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+
+  tegna-title-case-summaries:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' should use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  tegna-operations-have-tags:
+    description: All operations must be tagged.
+    message: "Operation must have at least one tag."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  tegna-responses-have-descriptions:
+    description: All responses must have descriptions.
+    message: "Response must include a description."
+    severity: error
+    given: "$.paths[*][*].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  tegna-security-defined:
+    description: All operations must define security requirements.
+    message: "Operation must include a security definition."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: security
+      function: truthy
+
+  tegna-servers-defined:
+    description: API must define at least one server.
+    message: "API must include a servers array."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  tegna-components-schemas:
+    description: API must define reusable schemas.
+    message: "API should define schemas in components/schemas."
+    severity: warn
+    given: "$.components"
+    then:
+      field: schemas
+      function: truthy
+
+  tegna-campaign-status-enum:
+    description: Campaign status fields should use the standard enum values.
+    message: "Campaign status should be one of: active, paused, completed, draft."
+    severity: hint
+    given: "$.components.schemas.Campaign.properties.status"
+    then:
+      field: enum
+      function: truthy
+
+  tegna-date-formats:
+    description: Date fields should use ISO 8601 format.
+    message: "Date field should use format: date or date-time."
+    severity: warn
+    given: "$.components.schemas[*].properties[?(@.type === 'string')]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object

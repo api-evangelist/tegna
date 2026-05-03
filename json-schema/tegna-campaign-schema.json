@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/tegna/main/json-schema/tegna-campaign-schema.json",
+  "title": "TEGNA Advertising Campaign",
+  "description": "A TEGNA AudienceOne digital advertising campaign across local TV and digital platforms.",
+  "type": "object",
+  "properties": {
+    "campaignId": {
+      "type": "string",
+      "description": "Unique campaign identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Campaign display name."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "completed", "draft"],
+      "description": "Current campaign status."
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Campaign start date."
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Campaign end date."
+    },
+    "budget": {
+      "type": "number",
+      "format": "double",
+      "minimum": 0,
+      "description": "Total campaign budget in USD."
+    },
+    "dailyBudget": {
+      "type": "number",
+      "format": "double",
+      "minimum": 0,
+      "description": "Daily spend cap in USD."
+    },
+    "targetAudiences": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Audience segment IDs targeted by the campaign."
+    },
+    "targetMarkets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "TEGNA market DMA codes targeted."
+    },
+    "adFormats": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["display", "native", "pre-roll", "mid-roll", "connected-tv"]
+      },
+      "description": "Ad formats used in the campaign."
+    }
+  },
+  "required": ["campaignId", "name", "status", "startDate", "budget"]
+}

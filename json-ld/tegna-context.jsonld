@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "tegna": "https://www.tegna.com/",
+    "adtech": "https://www.iab.com/",
+
+    "Campaign": "schema:BroadcastEvent",
+    "campaignId": "schema:identifier",
+    "name": "schema:name",
+    "status": "schema:status",
+    "startDate": "schema:startDate",
+    "endDate": "schema:endDate",
+    "budget": "schema:price",
+    "dailyBudget": "tegna:dailyBudget",
+    "targetAudiences": "schema:audience",
+    "targetMarkets": "schema:areaServed",
+    "adFormats": "schema:encodingFormat",
+
+    "AudienceSegment": "schema:Audience",
+    "audienceId": "schema:identifier",
+    "description": "schema:description",
+    "type": "schema:additionalType",
+    "size": "schema:numberOfItems",
+    "markets": "schema:areaServed",
+
+    "PerformanceReport": "schema:Report",
+    "impressions": "adtech:impressions",
+    "clicks": "adtech:clicks",
+    "ctr": "adtech:clickThroughRate",
+    "spend": "schema:price",
+    "completionRate": "adtech:videoCompletionRate",
+    "reach": "schema:numberOfItems",
+
+    "OttCampaign": "schema:BroadcastEvent",
+    "targetPlatforms": "schema:distribution",
+    "impressionGoal": "adtech:impressionGoal",
+    "completionRateTarget": "adtech:videoCompletionRate",
+
+    "OttInventory": "schema:MediaObject",
+    "platform": "schema:distribution",
+    "channel": "schema:broadcastChannel",
+    "genre": "schema:genre",
+    "cpm": "adtech:cpm",
+
+    "Market": "schema:Place",
+    "marketCode": "schema:identifier",
+    "stations": "schema:subjectOf",
+    "monthlyReach": "schema:numberOfItems"
+  }
+}

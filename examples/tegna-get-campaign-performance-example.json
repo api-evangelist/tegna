@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.tegna.com/v1/campaigns/TGNA-2026-C001/performance",
+    "headers": {
+      "Authorization": "Bearer {access_token}"
+    },
+    "parameters": {
+      "startDate": "2026-04-01",
+      "endDate": "2026-04-30",
+      "granularity": "daily"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "campaignId": "TGNA-2026-C001",
+      "startDate": "2026-04-01",
+      "endDate": "2026-04-30",
+      "impressions": 428350,
+      "clicks": 3655,
+      "ctr": 0.854,
+      "spend": 14280.00,
+      "completionRate": 72.4,
+      "reach": 189230,
+      "dailyBreakdown": [
+        {
+          "date": "2026-04-01",
+          "impressions": 14500,
+          "clicks": 128,
+          "spend": 500.00
+        },
+        {
+          "date": "2026-04-02",
+          "impressions": 13800,
+          "clicks": 112,
+          "spend": 487.50
+        },
+        {
+          "date": "2026-04-03",
+          "impressions": 15200,
+          "clicks": 145,
+          "spend": 500.00
+        }
+      ]
+    }
+  }
+}

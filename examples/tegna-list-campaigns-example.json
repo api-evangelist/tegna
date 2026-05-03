@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.tegna.com/v1/campaigns",
+    "headers": {
+      "Authorization": "Bearer {access_token}"
+    },
+    "parameters": {
+      "status": "active",
+      "pageSize": 5
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "campaignId": "TGNA-2026-C001",
+        "name": "Spring Auto Show 2026 - Tampa Bay",
+        "status": "active",
+        "startDate": "2026-04-01",
+        "endDate": "2026-05-31",
+        "budget": 25000.00,
+        "dailyBudget": 500.00,
+        "targetAudiences": ["seg-auto-intenders", "seg-household-income-75k-plus"],
+        "targetMarkets": ["DMA-539", "DMA-561"],
+        "adFormats": ["pre-roll", "display"]
+      },
+      {
+        "campaignId": "TGNA-2026-C002",
+        "name": "Local Healthcare System Brand Awareness",
+        "status": "active",
+        "startDate": "2026-03-01",
+        "endDate": "2026-06-30",
+        "budget": 75000.00,
+        "dailyBudget": 833.33,
+        "targetAudiences": ["seg-healthcare-seekers", "seg-adults-35-64"],
+        "targetMarkets": ["DMA-539"],
+        "adFormats": ["pre-roll", "connected-tv", "native"]
+      }
+    ]
+  }
+}
