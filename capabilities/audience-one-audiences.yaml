@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TEGNA AudienceOne API — Audiences
+  description: 'TEGNA AudienceOne API — Audiences. 2 operations. Lead operation: List Audiences. Self-contained Naftiko capability
+    covering one Tegna business surface.'
+  tags:
+  - Tegna
+  - Audiences
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TEGNA_API_KEY: TEGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: audience-one-audiences
+    baseUri: https://api.tegna.com/v1
+    description: TEGNA AudienceOne API — Audiences business capability. Self-contained, no shared references.
+    resources:
+    - name: audiences
+      path: /audiences
+      operations:
+      - name: listaudiences
+        method: GET
+        description: List Audiences
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: market
+          in: query
+          type: string
+          description: Filter audiences by TEGNA market (DMA code or city name).
+        - name: type
+          in: query
+          type: string
+          description: Filter by audience segment type.
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    - name: audiences-audienceId
+      path: /audiences/{audienceId}
+      operations:
+      - name: getaudience
+        method: GET
+        description: Get Audience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: audienceId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TEGNA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: audience-one-audiences-rest
+    port: 8080
+    description: REST adapter for TEGNA AudienceOne API — Audiences. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/audiences
+      name: audiences
+      description: REST surface for audiences.
+      operations:
+      - method: GET
+        name: listaudiences
+        description: List Audiences
+        call: audience-one-audiences.listaudiences
+        with:
+          market: rest.market
+          type: rest.type
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/audiences/{audienceid}
+      name: audiences-audienceid
+      description: REST surface for audiences-audienceId.
+      operations:
+      - method: GET
+        name: getaudience
+        description: Get Audience
+        call: audience-one-audiences.getaudience
+        with:
+          audienceId: rest.audienceId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: audience-one-audiences-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TEGNA AudienceOne API — Audiences. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-audiences
+      description: List Audiences
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: audience-one-audiences.listaudiences
+      with:
+        market: tools.market
+        type: tools.type
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-audience
+      description: Get Audience
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: audience-one-audiences.getaudience
+      with:
+        audienceId: tools.audienceId
+      outputParameters:
+      - type: object
+        mapping: $.

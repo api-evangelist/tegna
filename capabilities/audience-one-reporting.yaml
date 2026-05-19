@@ -1,0 +1,94 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TEGNA AudienceOne API — Reporting
+  description: 'TEGNA AudienceOne API — Reporting. 1 operations. Lead operation: Get Campaign Performance. Self-contained
+    Naftiko capability covering one Tegna business surface.'
+  tags:
+  - Tegna
+  - Reporting
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TEGNA_API_KEY: TEGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: audience-one-reporting
+    baseUri: https://api.tegna.com/v1
+    description: TEGNA AudienceOne API — Reporting business capability. Self-contained, no shared references.
+    resources:
+    - name: campaigns-campaignId-performance
+      path: /campaigns/{campaignId}/performance
+      operations:
+      - name: getcampaignperformance
+        method: GET
+        description: Get Campaign Performance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: campaignId
+          in: path
+          type: string
+          required: true
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: granularity
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.TEGNA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: audience-one-reporting-rest
+    port: 8080
+    description: REST adapter for TEGNA AudienceOne API — Reporting. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/campaigns/{campaignid}/performance
+      name: campaigns-campaignid-performance
+      description: REST surface for campaigns-campaignId-performance.
+      operations:
+      - method: GET
+        name: getcampaignperformance
+        description: Get Campaign Performance
+        call: audience-one-reporting.getcampaignperformance
+        with:
+          campaignId: rest.campaignId
+          startDate: rest.startDate
+          endDate: rest.endDate
+          granularity: rest.granularity
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: audience-one-reporting-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TEGNA AudienceOne API — Reporting. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-campaign-performance
+      description: Get Campaign Performance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: audience-one-reporting.getcampaignperformance
+      with:
+        campaignId: tools.campaignId
+        startDate: tools.startDate
+        endDate: tools.endDate
+        granularity: tools.granularity
+      outputParameters:
+      - type: object
+        mapping: $.

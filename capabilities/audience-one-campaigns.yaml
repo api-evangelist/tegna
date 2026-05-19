@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TEGNA AudienceOne API — Campaigns
+  description: 'TEGNA AudienceOne API — Campaigns. 4 operations. Lead operation: List Campaigns. Self-contained Naftiko capability
+    covering one Tegna business surface.'
+  tags:
+  - Tegna
+  - Campaigns
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TEGNA_API_KEY: TEGNA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: audience-one-campaigns
+    baseUri: https://api.tegna.com/v1
+    description: TEGNA AudienceOne API — Campaigns business capability. Self-contained, no shared references.
+    resources:
+    - name: campaigns
+      path: /campaigns
+      operations:
+      - name: listcampaigns
+        method: GET
+        description: List Campaigns
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter campaigns by status.
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+      - name: createcampaign
+        method: POST
+        description: Create Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: campaigns-campaignId
+      path: /campaigns/{campaignId}
+      operations:
+      - name: getcampaign
+        method: GET
+        description: Get Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: campaignId
+          in: path
+          type: string
+          required: true
+      - name: updatecampaign
+        method: PUT
+        description: Update Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: campaignId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.TEGNA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: audience-one-campaigns-rest
+    port: 8080
+    description: REST adapter for TEGNA AudienceOne API — Campaigns. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/campaigns
+      name: campaigns
+      description: REST surface for campaigns.
+      operations:
+      - method: GET
+        name: listcampaigns
+        description: List Campaigns
+        call: audience-one-campaigns.listcampaigns
+        with:
+          status: rest.status
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcampaign
+        description: Create Campaign
+        call: audience-one-campaigns.createcampaign
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/campaigns/{campaignid}
+      name: campaigns-campaignid
+      description: REST surface for campaigns-campaignId.
+      operations:
+      - method: GET
+        name: getcampaign
+        description: Get Campaign
+        call: audience-one-campaigns.getcampaign
+        with:
+          campaignId: rest.campaignId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecampaign
+        description: Update Campaign
+        call: audience-one-campaigns.updatecampaign
+        with:
+          campaignId: rest.campaignId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: audience-one-campaigns-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TEGNA AudienceOne API — Campaigns. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-campaigns
+      description: List Campaigns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: audience-one-campaigns.listcampaigns
+      with:
+        status: tools.status
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-campaign
+      description: Create Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: audience-one-campaigns.createcampaign
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-campaign
+      description: Get Campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: audience-one-campaigns.getcampaign
+      with:
+        campaignId: tools.campaignId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-campaign
+      description: Update Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: audience-one-campaigns.updatecampaign
+      with:
+        campaignId: tools.campaignId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
