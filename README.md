@@ -1,122 +1,87 @@
 # TEGNA (tegna)
 
-TEGNA Inc. is an American broadcast, digital media, and marketing services company operating as a subsidiary of Nexstar Media Group. TEGNA operates 64 full-power broadcast television stations across 51 U.S. markets, reaching approximately 39 percent of all television households. TEGNA offers digital advertising solutions including AudienceOne first-party data targeting and OTT/CTV advertising through its Premion platform.
+TEGNA Inc. is an American broadcast, digital media, and marketing services company headquartered in Tysons, Virginia, operating as a subsidiary of Nexstar Media Group following FCC approval of the $6.2 billion acquisition in March 2026. TEGNA operates 64 full-power broadcast television stations across 51 U.S. markets, reaching approximately 39 percent of all television households. TEGNA offers digital marketing solutions including AudienceOne first-party data targeting, OTT/CTV advertising through its Premion platform, and the TEGNA Marketing Solutions full-service agency. The company provides advertising APIs and programmatic integrations for digital, broadcast, streaming, and connected TV advertising campaigns.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml)
 
 ## Scope
 
 - **Type:** Index
-- **Fortune:** Fortune 500
 
-## Tags:
+## Tags
 
- - Broadcasting, CTV, Digital Advertising, Media, OTT, Television
+- Broadcasting
+- Media
+- Television
+- Digital Advertising
+- OTT
+- CTV
+- Fortune 500
 
 ## Timestamps
 
 - **Created:** 2026-03-24
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### TEGNA AudienceOne API
 
-First-party data targeting platform for digital advertising across TEGNA's 64 local TV brands in 51 markets.
+TEGNA AudienceOne is a first-party data targeting platform enabling advertisers to reach audiences across TEGNA's 64 local television brands in 51 markets using privacy-first targeting. The platform provides programmatic access to audience segments, campaign management, and performance analytics for digital, display, native, and pre-roll video advertising. Supports geofencing, retargeting, and precision targeting without third-party cookies.
 
-**Human URL:** [https://www.tegna.com/advertise/solutions/digital/](https://www.tegna.com/advertise/solutions/digital/)
+- **Human URL:** [https://www.tegna.com/advertise/solutions/digital/](https://www.tegna.com/advertise/solutions/digital/)
+- **Base URL:** `https://api.tegna.com`
 
-#### Tags:
+#### Tags
 
- - Advertising, Audience Targeting, Digital Media, First-Party Data, Programmatic
+- Advertising
+- Audience Targeting
+- Digital Media
+- First-Party Data
+- Programmatic
 
 #### Properties
 
 - [Documentation](https://www.tegna.com/advertise/solutions/digital/)
-- [OpenAPI](openapi/tegna-audience-one-openapi.yml)
-- [JSONSchema](json-schema/tegna-campaign-schema.json)
+- [OpenAPI](openapi/tegna-audience-one-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tegna-audience-one.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tegna-audience-one.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/tegna-campaign-schema.json) — [JSON Schema](https://json-schema.org/specification)
 
 ### TEGNA Premion OTT Advertising API
 
-OTT/CTV advertising platform for streaming video ads across Roku, Hulu, Amazon Fire TV, and other platforms.
+Premion is TEGNA's over-the-top (OTT) and connected TV (CTV) advertising platform, enabling advertisers to reach audiences across premium streaming services including Roku, Hulu, Amazon Fire TV, and other OTT platforms. The Premion API provides campaign creation, audience targeting, impression delivery, and performance reporting for streaming video advertising at local and national scale.
 
-**Human URL:** [https://premion.com/](https://premion.com/)
+- **Human URL:** [https://premion.com/](https://premion.com/)
+- **Base URL:** `https://api.premion.com`
 
-#### Tags:
+#### Tags
 
- - CTV, Connected TV, OTT Advertising, Streaming, Video Advertising
+- OTT Advertising
+- CTV
+- Connected TV
+- Streaming
+- Video Advertising
 
 #### Properties
 
 - [Documentation](https://premion.com/)
-- [OpenAPI](openapi/tegna-premion-openapi.yml)
-
-## Artifacts
-
-### OpenAPI Specifications
-
-| File | Description |
-|---|---|
-| [tegna-audience-one-openapi.yml](openapi/tegna-audience-one-openapi.yml) | AudienceOne API - audiences, campaigns, performance reporting, markets |
-| [tegna-premion-openapi.yml](openapi/tegna-premion-openapi.yml) | Premion OTT API - campaigns, inventory, creatives, performance |
-
-### JSON Schemas
-
-| File | Description |
-|---|---|
-| [tegna-campaign-schema.json](json-schema/tegna-campaign-schema.json) | Schema for TEGNA advertising campaign objects |
-
-### JSON Structure
-
-| File | Description |
-|---|---|
-| [tegna-campaign-structure.json](json-structure/tegna-campaign-structure.json) | Field-level documentation for campaign objects |
-
-### JSON-LD Context
-
-| File | Description |
-|---|---|
-| [tegna-context.jsonld](json-ld/tegna-context.jsonld) | Linked data context mapping TEGNA advertising terms to schema.org |
-
-### Examples
-
-| File | Description |
-|---|---|
-| [tegna-list-campaigns-example.json](examples/tegna-list-campaigns-example.json) | Example request/response for listing campaigns |
-| [tegna-get-campaign-performance-example.json](examples/tegna-get-campaign-performance-example.json) | Example request/response for campaign performance |
-
-### Spectral Rules
-
-| File | Description |
-|---|---|
-| [tegna-rules.yml](rules/tegna-rules.yml) | Spectral ruleset for TEGNA API conventions |
-
-### Naftiko Capabilities
-
-| File | Description |
-|---|---|
-| [capabilities/media-advertising.yaml](capabilities/media-advertising.yaml) | Media advertising workflow - digital + OTT campaigns (8 MCP tools) |
-| [capabilities/shared/audience-one.yaml](capabilities/shared/audience-one.yaml) | Shared AudienceOne API consumed definition |
-| [capabilities/shared/premion-ott.yaml](capabilities/shared/premion-ott.yaml) | Shared Premion OTT API consumed definition |
-
-### Vocabulary
-
-| File | Description |
-|---|---|
-| [tegna-vocabulary.yml](vocabulary/tegna-vocabulary.yml) | Domain vocabulary for TEGNA media advertising |
+- [OpenAPI](openapi/tegna-premion-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/tegna-premion.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tegna-premion.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
 - [Website](https://www.tegna.com)
-- [Nexstar Parent](https://www.nexstar.tv/)
-- [Advertise With TEGNA](https://www.tegna.com/advertise/)
-- [Digital Solutions](https://www.tegna.com/advertise/solutions/digital/)
-- [Broadcast Solutions](https://www.tegna.com/advertise/solutions/broadcast/)
-- [Premion OTT](https://premion.com/)
+- [Website](https://www.nexstar.tv/)
+- [Advertising](https://www.tegna.com/advertise/)
+- [Documentation](https://www.tegna.com/advertise/solutions/digital/)
+- [Documentation](https://www.tegna.com/advertise/solutions/broadcast/)
+- [Documentation](https://www.tegna.com/advertise/solutions/streaming/)
+- [Website](https://premion.com/)
 - [LinkedIn](https://www.linkedin.com/company/tegna)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

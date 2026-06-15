@@ -1,0 +1,1008 @@
+{
+  "item": [
+    {
+      "id": "12cb18af-c70c-4aa7-b4d5-4c92e9501032",
+      "name": "OTT Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f817991a-1be6-47e8-968a-7eb416ce79f4",
+          "name": "List OTT Campaigns",
+          "request": {
+            "name": "List OTT Campaigns",
+            "description": {
+              "content": "Retrieve OTT/CTV advertising campaigns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c5d191b-72b5-49cf-8bdf-437108690df0",
+              "name": "A list of OTT campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"campaignId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"paused\",\n    \"startDate\": \"1991-02-24\",\n    \"endDate\": \"1975-03-08\",\n    \"budget\": 9029.734884442125,\n    \"targetPlatforms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"targetGenres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"impressionGoal\": 1498,\n    \"completionRateTarget\": 4335.047810417831\n  },\n  {\n    \"campaignId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"draft\",\n    \"startDate\": \"1946-11-19\",\n    \"endDate\": \"1953-08-24\",\n    \"budget\": 1759.0298589628717,\n    \"targetPlatforms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"targetGenres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"impressionGoal\": 2336,\n    \"completionRateTarget\": 6358.664674387038\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bf6fbd5-b1a4-4519-abdd-26b092ed5081",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f2bc7c4-284c-4358-87fa-da2b2d07846d",
+          "name": "Create OTT Campaign",
+          "request": {
+            "name": "Create OTT Campaign",
+            "description": {
+              "content": "Create a new OTT/CTV advertising campaign on Premion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"targetPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetGenres\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"impressionGoal\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d82f032-d936-4d5f-a49a-f12c80ef6a4f",
+              "name": "OTT campaign created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"targetPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetGenres\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"impressionGoal\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"completed\",\n  \"startDate\": \"1948-08-10\",\n  \"endDate\": \"1950-07-29\",\n  \"budget\": 7023.042830468103,\n  \"targetPlatforms\": [\n    \"string\",\n    \"string\"\n  ],\n  \"targetGenres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"impressionGoal\": 1814,\n  \"completionRateTarget\": 2323.6889927259663\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8977f9ad-a448-49d8-9c60-4e6bf19f36b6",
+              "name": "Invalid campaign data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"targetPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetGenres\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"impressionGoal\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67f731b5-a454-4dfa-9a37-f6ad47c7e2e0",
+          "name": "Get OTT Campaign",
+          "request": {
+            "name": "Get OTT Campaign",
+            "description": {
+              "content": "Retrieve details for a specific OTT campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "600c0a73-1d86-4c3a-8474-75029b22b244",
+              "name": "OTT campaign details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"completed\",\n  \"startDate\": \"1948-08-10\",\n  \"endDate\": \"1950-07-29\",\n  \"budget\": 7023.042830468103,\n  \"targetPlatforms\": [\n    \"string\",\n    \"string\"\n  ],\n  \"targetGenres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"impressionGoal\": 1814,\n  \"completionRateTarget\": 2323.6889927259663\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d69e0ec-bff2-461e-b5a9-4dbd20850ec0",
+              "name": "Campaign not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aac9333a-175a-4952-be3f-b2bd660812f0",
+      "name": "Reporting",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e52ca75-a3d5-45aa-9903-f930c83bea3e",
+          "name": "Get OTT Campaign Performance",
+          "request": {
+            "name": "Get OTT Campaign Performance",
+            "description": {
+              "content": "Retrieve streaming performance metrics for an OTT campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaignId",
+                "performance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "09e376d3-88cf-4581-ae90-ac8b78379f96",
+              "name": "OTT campaign performance metrics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId",
+                    "performance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"impressions\": 8172,\n  \"completions\": 84,\n  \"completionRate\": 7148.190403888602,\n  \"reach\": 7851,\n  \"frequency\": 8011.581643303988,\n  \"spend\": 143.57311211642408,\n  \"cpcv\": 817.8258594273847,\n  \"platformBreakdown\": [\n    {\n      \"platform\": \"string\",\n      \"impressions\": 594,\n      \"completionRate\": 1015.8489284243666\n    },\n    {\n      \"platform\": \"string\",\n      \"impressions\": 6518,\n      \"completionRate\": 5351.430258653904\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0434eb00-8869-46c4-bcf1-dcd65ed05dfe",
+      "name": "Inventory",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0c74099-6c24-4f8e-b556-ec70c90bcc6b",
+          "name": "List OTT Inventory",
+          "request": {
+            "name": "List OTT Inventory",
+            "description": {
+              "content": "Retrieve available OTT/CTV inventory across streaming platforms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Filter by streaming platform."
+                },
+                {
+                  "disabled": false,
+                  "key": "genre",
+                  "value": "<string>",
+                  "description": "Filter by content genre."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4347d151-2400-4cb0-b8ad-0f9488dc8707",
+              "name": "Available OTT inventory.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "genre",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"inventoryId\": \"string\",\n    \"platform\": \"string\",\n    \"channel\": \"string\",\n    \"genre\": \"string\",\n    \"availableImpressions\": 4580,\n    \"cpm\": 9722.652375369435\n  },\n  {\n    \"inventoryId\": \"string\",\n    \"platform\": \"string\",\n    \"channel\": \"string\",\n    \"genre\": \"string\",\n    \"availableImpressions\": 192,\n    \"cpm\": 9995.540522837768\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f21b417a-5514-46ef-ad6c-fe9f4292881c",
+      "name": "Creatives",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f48f0817-cdfe-4a67-aeed-a55baf8c3a39",
+          "name": "List Creatives",
+          "request": {
+            "name": "List Creatives",
+            "description": {
+              "content": "Retrieve video creative assets for OTT campaigns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "creatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "295b21c1-1a86-487c-82b1-3955d34c2a2e",
+              "name": "A list of video creatives.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"creativeId\": \"string\",\n    \"name\": \"string\",\n    \"duration\": 1608,\n    \"format\": \"mp4\",\n    \"resolution\": \"4K\",\n    \"status\": \"pending\",\n    \"uploadedAt\": \"2007-05-06T13:21:34.508Z\"\n  },\n  {\n    \"creativeId\": \"string\",\n    \"name\": \"string\",\n    \"duration\": 8609,\n    \"format\": \"mp4\",\n    \"resolution\": \"4K\",\n    \"status\": \"approved\",\n    \"uploadedAt\": \"1979-10-30T05:44:54.476Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e19bf9fc-be28-4c05-aa0e-aa8d58991d7a",
+          "name": "Upload Creative",
+          "request": {
+            "name": "Upload Creative",
+            "description": {
+              "content": "Upload a new video creative asset for OTT advertising.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "creatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"videoUrl\": \"<uri>\",\n  \"duration\": \"<integer>\",\n  \"clickThroughUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30f4c863-c8c3-41c9-a826-83392fe81b4f",
+              "name": "Creative uploaded successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"videoUrl\": \"<uri>\",\n  \"duration\": \"<integer>\",\n  \"clickThroughUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"creativeId\": \"string\",\n  \"name\": \"string\",\n  \"duration\": 6694,\n  \"format\": \"mp4\",\n  \"resolution\": \"720p\",\n  \"status\": \"pending\",\n  \"uploadedAt\": \"2009-05-22T12:12:24.310Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.premion.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "04d36d12-8149-4d12-948f-30026f3e36cb",
+    "name": "TEGNA Premion OTT Advertising API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Premion OTT Advertising API enables programmatic access to TEGNA's over-the-top (OTT) and connected TV (CTV) advertising platform. Premion delivers targeted video ads across premium streaming services including Roku, Hulu, Amazon Fire TV, Apple TV, and other OTT platforms. The API supports campaign creation, audience targeting, creative management, and detailed streaming performance reporting.",
+      "type": "text/plain"
+    }
+  }
+}
