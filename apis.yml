@@ -66,6 +66,10 @@ apis:
       - type: OpenAPI
         url: openapi/tegna-premion-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/tegna-domain-security.yml
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
   - url: https://www.tegna.com
     name: TEGNA
     type: Website
@@ -98,6 +102,8 @@ common:
     name: TEGNA on LinkedIn
     type: LinkedIn
     description: TEGNA LinkedIn company page.
+  - url: https://www.tegna.com/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
