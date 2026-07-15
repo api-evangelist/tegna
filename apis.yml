@@ -66,6 +66,8 @@ apis:
       - type: OpenAPI
         url: openapi/tegna-premion-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/tegna-agentic-access.yml
   - type: DomainSecurity
     url: security/tegna-domain-security.yml
   - type: Authentication
