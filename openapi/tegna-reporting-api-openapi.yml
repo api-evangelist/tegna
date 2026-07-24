@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: TEGNA AudienceOne Audiences Reporting API
+  description: The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.
+  version: 1.0.0
+  contact:
+    url: https://www.tegna.com/advertise/solutions/digital/
+  license:
+    name: Proprietary
+    url: https://www.tegna.com/
+servers:
+- url: https://api.tegna.com/v1
+  description: TEGNA AudienceOne API - Production
+tags:
+- name: Reporting
+paths:
+  /campaigns/{campaignId}/performance:
+    get:
+      operationId: getCampaignPerformance
+      summary: Get Campaign Performance
+      description: Retrieve performance metrics for a specific campaign.
+      tags:
+      - Reporting
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: granularity
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - daily
+          - weekly
+          - monthly
+          default: daily
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Campaign performance metrics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceReport'
+components:
+  schemas:
+    PerformanceReport:
+      type: object
+      description: Performance metrics for a TEGNA advertising campaign.
+      properties:
+        campaignId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        impressions:
+          type: integer
+          description: Total impressions delivered.
+        clicks:
+          type: integer
+          description: Total clicks.
+        ctr:
+          type: number
+          format: double
+          description: Click-through rate as a percentage.
+        spend:
+          type: number
+          format: double
+          description: Total spend in USD.
+        completionRate:
+          type: number
+          format: double
+          description: Video completion rate as a percentage (for video formats).
+        reach:
+          type: integer
+          description: Unique users reached.
+        dailyBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              impressions:
+                type: integer
+              clicks:
+                type: integer
+              spend:
+                type: number
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

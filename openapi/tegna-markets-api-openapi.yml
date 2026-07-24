@@ -1,0 +1,62 @@
+openapi: 3.0.3
+info:
+  title: TEGNA AudienceOne Audiences Markets API
+  description: The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.
+  version: 1.0.0
+  contact:
+    url: https://www.tegna.com/advertise/solutions/digital/
+  license:
+    name: Proprietary
+    url: https://www.tegna.com/
+servers:
+- url: https://api.tegna.com/v1
+  description: TEGNA AudienceOne API - Production
+tags:
+- name: Markets
+paths:
+  /markets:
+    get:
+      operationId: listMarkets
+      summary: List Markets
+      description: Retrieve available TEGNA broadcast markets for campaign targeting.
+      tags:
+      - Markets
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: A list of TEGNA broadcast markets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Market'
+components:
+  schemas:
+    Market:
+      type: object
+      description: A TEGNA local broadcast market.
+      properties:
+        marketCode:
+          type: string
+          description: DMA market code.
+        name:
+          type: string
+          description: Market name (e.g., Tampa Bay, Dallas).
+        state:
+          type: string
+          description: Primary state.
+        stations:
+          type: array
+          description: TEGNA television stations in this market.
+          items:
+            type: string
+        monthlyReach:
+          type: integer
+          description: Estimated monthly audience reach.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,113 @@
+openapi: 3.0.3
+info:
+  title: TEGNA AudienceOne Audiences Creatives API
+  description: The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.
+  version: 1.0.0
+  contact:
+    url: https://www.tegna.com/advertise/solutions/digital/
+  license:
+    name: Proprietary
+    url: https://www.tegna.com/
+servers:
+- url: https://api.tegna.com/v1
+  description: TEGNA AudienceOne API - Production
+tags:
+- name: Creatives
+paths:
+  /creatives:
+    get:
+      operationId: listCreatives
+      summary: List Creatives
+      description: Retrieve video creative assets for OTT campaigns.
+      tags:
+      - Creatives
+      security:
+      - apiKeyAuth: []
+      responses:
+        '200':
+          description: A list of video creatives.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Creative'
+    post:
+      operationId: uploadCreative
+      summary: Upload Creative
+      description: Upload a new video creative asset for OTT advertising.
+      tags:
+      - Creatives
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreativeUpload'
+      responses:
+        '201':
+          description: Creative uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creative'
+components:
+  schemas:
+    CreativeUpload:
+      type: object
+      required:
+      - name
+      - videoUrl
+      - duration
+      properties:
+        name:
+          type: string
+        videoUrl:
+          type: string
+          format: uri
+          description: URL of the video file to upload.
+        duration:
+          type: integer
+          description: Video duration in seconds.
+        clickThroughUrl:
+          type: string
+          format: uri
+    Creative:
+      type: object
+      description: A video creative asset for OTT advertising.
+      properties:
+        creativeId:
+          type: string
+        name:
+          type: string
+        duration:
+          type: integer
+          description: Video duration in seconds.
+        format:
+          type: string
+          enum:
+          - mp4
+          - mov
+          - webm
+        resolution:
+          type: string
+          enum:
+          - 1080p
+          - 720p
+          - 4K
+        status:
+          type: string
+          enum:
+          - approved
+          - pending
+          - rejected
+        uploadedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
