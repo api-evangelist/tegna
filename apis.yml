@@ -9,7 +9,20 @@ description: >-
   The company provides advertising APIs and programmatic integrations for digital, broadcast, streaming, and connected
   TV advertising campaigns.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tegna.png
 tags:
   - Broadcasting
   - Media
@@ -23,48 +36,118 @@ created: '2026-03-24'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: tegna:audience-one-api
-    name: TEGNA AudienceOne API
-    description: >-
-      TEGNA AudienceOne is a first-party data targeting platform enabling advertisers to reach audiences across TEGNA's
-      64 local television brands in 51 markets using privacy-first targeting. The platform provides programmatic access
-      to audience segments, campaign management, and performance analytics for digital, display, native, and pre-roll
-      video advertising. Supports geofencing, retargeting, and precision targeting without third-party cookies.
-    humanURL: https://www.tegna.com/advertise/solutions/digital/
-    baseURL: https://api.tegna.com
-    tags:
-      - Advertising
-      - Audience Targeting
-      - Digital Media
-      - First-Party Data
-      - Programmatic
-    properties:
-      - type: Documentation
-        url: https://www.tegna.com/advertise/solutions/digital/
-      - type: OpenAPI
-        url: openapi/tegna-audience-one-openapi.yml
-      - type: JSONSchema
-        url: json-schema/tegna-campaign-schema.json
-  - aid: tegna:premion-api
-    name: TEGNA Premion OTT Advertising API
-    description: >-
-      Premion is TEGNA's over-the-top (OTT) and connected TV (CTV) advertising platform, enabling advertisers to reach
-      audiences across premium streaming services including Roku, Hulu, Amazon Fire TV, and other OTT platforms. The
-      Premion API provides campaign creation, audience targeting, impression delivery, and performance reporting for
-      streaming video advertising at local and national scale.
-    humanURL: https://premion.com/
-    baseURL: https://api.premion.com
-    tags:
-      - OTT Advertising
-      - CTV
-      - Connected TV
-      - Streaming
-      - Video Advertising
-    properties:
-      - type: Documentation
-        url: https://premion.com/
-      - type: OpenAPI
-        url: openapi/tegna-premion-openapi.yml
+- aid: tegna:tegna-audiences-api
+  name: TEGNA Audiences API
+  description: The Audiences API from TEGNA — 2 operation(s) for audiences.
+  humanURL: https://www.tegna.com/advertise/solutions/digital/
+  baseURL: https://api.tegna.com
+  tags:
+  - Audiences
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-audiences-api-openapi.yml
+  - type: Documentation
+    url: https://www.tegna.com/advertise/solutions/digital/
+  - type: JSONSchema
+    url: json-schema/tegna-campaign-schema.json
+  - type: Documentation
+    url: https://premion.com/
+- aid: tegna:tegna-campaigns-api
+  name: TEGNA Campaigns API
+  description: The Campaigns API from TEGNA — 2 operation(s) for campaigns.
+  humanURL: https://www.tegna.com/advertise/solutions/digital/
+  baseURL: https://api.tegna.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://www.tegna.com/advertise/solutions/digital/
+  - type: JSONSchema
+    url: json-schema/tegna-campaign-schema.json
+  - type: Documentation
+    url: https://premion.com/
+- aid: tegna:tegna-creatives-api
+  name: TEGNA Creatives API
+  description: The Creatives API from TEGNA — 1 operation(s) for creatives.
+  humanURL: https://www.tegna.com/advertise/solutions/digital/
+  baseURL: https://api.tegna.com
+  tags:
+  - Creatives
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-creatives-api-openapi.yml
+  - type: Documentation
+    url: https://www.tegna.com/advertise/solutions/digital/
+  - type: JSONSchema
+    url: json-schema/tegna-campaign-schema.json
+  - type: Documentation
+    url: https://premion.com/
+- aid: tegna:tegna-inventory-api
+  name: TEGNA Inventory API
+  description: The Inventory API from TEGNA — 1 operation(s) for inventory.
+  humanURL: https://www.tegna.com/advertise/solutions/digital/
+  baseURL: https://api.tegna.com
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-inventory-api-openapi.yml
+  - type: Documentation
+    url: https://www.tegna.com/advertise/solutions/digital/
+  - type: JSONSchema
+    url: json-schema/tegna-campaign-schema.json
+  - type: Documentation
+    url: https://premion.com/
+- aid: tegna:tegna-markets-api
+  name: TEGNA Markets API
+  description: The Markets API from TEGNA — 1 operation(s) for markets.
+  humanURL: https://www.tegna.com/advertise/solutions/digital/
+  baseURL: https://api.tegna.com
+  tags:
+  - Markets
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-markets-api-openapi.yml
+  - type: Documentation
+    url: https://www.tegna.com/advertise/solutions/digital/
+  - type: JSONSchema
+    url: json-schema/tegna-campaign-schema.json
+  - type: Documentation
+    url: https://premion.com/
+- aid: tegna:tegna-ott-campaigns-api
+  name: TEGNA OTT Campaigns API
+  description: The OTT Campaigns API from TEGNA — 2 operation(s) for ott campaigns.
+  humanURL: https://www.tegna.com/advertise/solutions/digital/
+  baseURL: https://api.tegna.com
+  tags:
+  - OTT Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-ott-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://www.tegna.com/advertise/solutions/digital/
+  - type: JSONSchema
+    url: json-schema/tegna-campaign-schema.json
+  - type: Documentation
+    url: https://premion.com/
+- aid: tegna:tegna-reporting-api
+  name: TEGNA Reporting API
+  description: The Reporting API from TEGNA — 1 operation(s) for reporting.
+  humanURL: https://www.tegna.com/advertise/solutions/digital/
+  baseURL: https://api.tegna.com
+  tags:
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://www.tegna.com/advertise/solutions/digital/
+  - type: JSONSchema
+    url: json-schema/tegna-campaign-schema.json
+  - type: Documentation
+    url: https://premion.com/
 common:
   - type: AgenticAccess
     url: agentic-access/tegna-agentic-access.yml
