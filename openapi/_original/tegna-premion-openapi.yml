@@ -1,0 +1,394 @@
+openapi: 3.0.3
+info:
+  title: TEGNA Premion OTT Advertising API
+  description: >-
+    The Premion OTT Advertising API enables programmatic access to TEGNA's
+    over-the-top (OTT) and connected TV (CTV) advertising platform. Premion
+    delivers targeted video ads across premium streaming services including
+    Roku, Hulu, Amazon Fire TV, Apple TV, and other OTT platforms. The API
+    supports campaign creation, audience targeting, creative management, and
+    detailed streaming performance reporting.
+  version: 1.0.0
+  contact:
+    url: https://premion.com/
+  license:
+    name: Proprietary
+    url: https://premion.com/
+servers:
+  - url: https://api.premion.com/v1
+    description: Premion OTT API - Production
+paths:
+  /campaigns:
+    get:
+      operationId: listOttCampaigns
+      summary: List OTT Campaigns
+      description: Retrieve OTT/CTV advertising campaigns.
+      tags:
+        - OTT Campaigns
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - paused
+              - completed
+              - draft
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: A list of OTT campaigns.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OttCampaign'
+        '401':
+          description: Unauthorized.
+    post:
+      operationId: createOttCampaign
+      summary: Create OTT Campaign
+      description: Create a new OTT/CTV advertising campaign on Premion.
+      tags:
+        - OTT Campaigns
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OttCampaignCreate'
+      responses:
+        '201':
+          description: OTT campaign created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OttCampaign'
+        '400':
+          description: Invalid campaign data.
+  /campaigns/{campaignId}:
+    get:
+      operationId: getOttCampaign
+      summary: Get OTT Campaign
+      description: Retrieve details for a specific OTT campaign.
+      tags:
+        - OTT Campaigns
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: OTT campaign details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OttCampaign'
+        '404':
+          description: Campaign not found.
+  /campaigns/{campaignId}/performance:
+    get:
+      operationId: getOttCampaignPerformance
+      summary: Get OTT Campaign Performance
+      description: Retrieve streaming performance metrics for an OTT campaign.
+      tags:
+        - Reporting
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: OTT campaign performance metrics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OttPerformanceReport'
+  /inventory:
+    get:
+      operationId: listOttInventory
+      summary: List OTT Inventory
+      description: Retrieve available OTT/CTV inventory across streaming platforms.
+      tags:
+        - Inventory
+      parameters:
+        - name: platform
+          in: query
+          description: Filter by streaming platform.
+          required: false
+          schema:
+            type: string
+            enum:
+              - roku
+              - hulu
+              - amazon-fire-tv
+              - apple-tv
+              - samsung-tv
+              - all
+        - name: genre
+          in: query
+          description: Filter by content genre.
+          required: false
+          schema:
+            type: string
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: Available OTT inventory.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OttInventory'
+  /creatives:
+    get:
+      operationId: listCreatives
+      summary: List Creatives
+      description: Retrieve video creative assets for OTT campaigns.
+      tags:
+        - Creatives
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: A list of video creatives.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Creative'
+    post:
+      operationId: uploadCreative
+      summary: Upload Creative
+      description: Upload a new video creative asset for OTT advertising.
+      tags:
+        - Creatives
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreativeUpload'
+      responses:
+        '201':
+          description: Creative uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creative'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    OttCampaign:
+      type: object
+      description: A Premion OTT/CTV advertising campaign.
+      properties:
+        campaignId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - paused
+            - completed
+            - draft
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        budget:
+          type: number
+          format: double
+        targetPlatforms:
+          type: array
+          items:
+            type: string
+        targetGenres:
+          type: array
+          items:
+            type: string
+        impressionGoal:
+          type: integer
+        completionRateTarget:
+          type: number
+          format: double
+    OttCampaignCreate:
+      type: object
+      required:
+        - name
+        - startDate
+        - budget
+      properties:
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        budget:
+          type: number
+          format: double
+        targetPlatforms:
+          type: array
+          items:
+            type: string
+        targetGenres:
+          type: array
+          items:
+            type: string
+        impressionGoal:
+          type: integer
+    OttPerformanceReport:
+      type: object
+      description: Performance metrics for an OTT/CTV advertising campaign.
+      properties:
+        campaignId:
+          type: string
+        impressions:
+          type: integer
+        completions:
+          type: integer
+        completionRate:
+          type: number
+          format: double
+          description: Video completion rate as a percentage.
+        reach:
+          type: integer
+        frequency:
+          type: number
+          format: double
+          description: Average frequency of exposure per unique viewer.
+        spend:
+          type: number
+          format: double
+        cpcv:
+          type: number
+          format: double
+          description: Cost per completed view in USD.
+        platformBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              platform:
+                type: string
+              impressions:
+                type: integer
+              completionRate:
+                type: number
+    OttInventory:
+      type: object
+      description: Available OTT/CTV advertising inventory.
+      properties:
+        inventoryId:
+          type: string
+        platform:
+          type: string
+        channel:
+          type: string
+        genre:
+          type: string
+        availableImpressions:
+          type: integer
+        cpm:
+          type: number
+          format: double
+          description: Cost per thousand impressions (CPM) in USD.
+    Creative:
+      type: object
+      description: A video creative asset for OTT advertising.
+      properties:
+        creativeId:
+          type: string
+        name:
+          type: string
+        duration:
+          type: integer
+          description: Video duration in seconds.
+        format:
+          type: string
+          enum:
+            - mp4
+            - mov
+            - webm
+        resolution:
+          type: string
+          enum:
+            - 1080p
+            - 720p
+            - 4K
+        status:
+          type: string
+          enum:
+            - approved
+            - pending
+            - rejected
+        uploadedAt:
+          type: string
+          format: date-time
+    CreativeUpload:
+      type: object
+      required:
+        - name
+        - videoUrl
+        - duration
+      properties:
+        name:
+          type: string
+        videoUrl:
+          type: string
+          format: uri
+          description: URL of the video file to upload.
+        duration:
+          type: integer
+          description: Video duration in seconds.
+        clickThroughUrl:
+          type: string
+          format: uri

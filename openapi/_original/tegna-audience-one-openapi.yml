@@ -1,0 +1,466 @@
+openapi: 3.0.3
+info:
+  title: TEGNA AudienceOne API
+  description: >-
+    The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party
+    data targeting platform for digital advertising campaigns across TEGNA's 64
+    local television brands in 51 U.S. markets. The platform provides audience
+    segment management, campaign creation, creative management, and performance
+    reporting for display, native, pre-roll video, and programmatic advertising.
+  version: 1.0.0
+  contact:
+    url: https://www.tegna.com/advertise/solutions/digital/
+  license:
+    name: Proprietary
+    url: https://www.tegna.com/
+servers:
+  - url: https://api.tegna.com/v1
+    description: TEGNA AudienceOne API - Production
+paths:
+  /audiences:
+    get:
+      operationId: listAudiences
+      summary: List Audiences
+      description: Retrieve available audience segments for targeting in TEGNA campaigns.
+      tags:
+        - Audiences
+      parameters:
+        - name: market
+          in: query
+          description: Filter audiences by TEGNA market (DMA code or city name).
+          required: false
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Filter by audience segment type.
+          required: false
+          schema:
+            type: string
+            enum:
+              - demographic
+              - behavioral
+              - contextual
+              - geographic
+              - first-party
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of available audience segments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  audiences:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AudienceSegment'
+        '401':
+          description: Unauthorized.
+  /audiences/{audienceId}:
+    get:
+      operationId: getAudience
+      summary: Get Audience
+      description: Retrieve details about a specific audience segment.
+      tags:
+        - Audiences
+      parameters:
+        - name: audienceId
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Audience segment details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AudienceSegment'
+        '404':
+          description: Audience segment not found.
+  /campaigns:
+    get:
+      operationId: listCampaigns
+      summary: List Campaigns
+      description: Retrieve advertising campaigns for the authenticated advertiser.
+      tags:
+        - Campaigns
+      parameters:
+        - name: status
+          in: query
+          description: Filter campaigns by status.
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - paused
+              - completed
+              - draft
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of advertising campaigns.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Campaign'
+    post:
+      operationId: createCampaign
+      summary: Create Campaign
+      description: Create a new digital advertising campaign.
+      tags:
+        - Campaigns
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignCreate'
+      responses:
+        '201':
+          description: Campaign created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '400':
+          description: Invalid campaign data.
+  /campaigns/{campaignId}:
+    get:
+      operationId: getCampaign
+      summary: Get Campaign
+      description: Retrieve details for a specific advertising campaign.
+      tags:
+        - Campaigns
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Campaign details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+        '404':
+          description: Campaign not found.
+    put:
+      operationId: updateCampaign
+      summary: Update Campaign
+      description: Update an existing advertising campaign.
+      tags:
+        - Campaigns
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignCreate'
+      responses:
+        '200':
+          description: Campaign updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Campaign'
+  /campaigns/{campaignId}/performance:
+    get:
+      operationId: getCampaignPerformance
+      summary: Get Campaign Performance
+      description: Retrieve performance metrics for a specific campaign.
+      tags:
+        - Reporting
+      parameters:
+        - name: campaignId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: granularity
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - daily
+              - weekly
+              - monthly
+            default: daily
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Campaign performance metrics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceReport'
+  /markets:
+    get:
+      operationId: listMarkets
+      summary: List Markets
+      description: Retrieve available TEGNA broadcast markets for campaign targeting.
+      tags:
+        - Markets
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of TEGNA broadcast markets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Market'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AudienceSegment:
+      type: object
+      description: A targetable audience segment in TEGNA AudienceOne.
+      properties:
+        audienceId:
+          type: string
+          description: Unique identifier for the audience segment.
+        name:
+          type: string
+          description: Display name of the audience segment.
+        description:
+          type: string
+          description: Description of the audience segment.
+        type:
+          type: string
+          enum:
+            - demographic
+            - behavioral
+            - contextual
+            - geographic
+            - first-party
+        size:
+          type: integer
+          description: Estimated reach of the audience segment.
+        markets:
+          type: array
+          description: TEGNA markets where this segment is available.
+          items:
+            type: string
+    Campaign:
+      type: object
+      description: A TEGNA AudienceOne digital advertising campaign.
+      properties:
+        campaignId:
+          type: string
+          description: Unique campaign identifier.
+        name:
+          type: string
+          description: Campaign name.
+        status:
+          type: string
+          enum:
+            - active
+            - paused
+            - completed
+            - draft
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        budget:
+          type: number
+          format: double
+          description: Total campaign budget in USD.
+        dailyBudget:
+          type: number
+          format: double
+          description: Daily spend cap in USD.
+        targetAudiences:
+          type: array
+          description: Audience segment IDs targeted by the campaign.
+          items:
+            type: string
+        targetMarkets:
+          type: array
+          description: TEGNA market codes targeted by the campaign.
+          items:
+            type: string
+        adFormats:
+          type: array
+          description: Ad formats used in the campaign.
+          items:
+            type: string
+            enum:
+              - display
+              - native
+              - pre-roll
+              - mid-roll
+              - connected-tv
+    CampaignCreate:
+      type: object
+      required:
+        - name
+        - startDate
+        - budget
+      properties:
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        budget:
+          type: number
+          format: double
+        dailyBudget:
+          type: number
+          format: double
+        targetAudiences:
+          type: array
+          items:
+            type: string
+        targetMarkets:
+          type: array
+          items:
+            type: string
+        adFormats:
+          type: array
+          items:
+            type: string
+    PerformanceReport:
+      type: object
+      description: Performance metrics for a TEGNA advertising campaign.
+      properties:
+        campaignId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        impressions:
+          type: integer
+          description: Total impressions delivered.
+        clicks:
+          type: integer
+          description: Total clicks.
+        ctr:
+          type: number
+          format: double
+          description: Click-through rate as a percentage.
+        spend:
+          type: number
+          format: double
+          description: Total spend in USD.
+        completionRate:
+          type: number
+          format: double
+          description: Video completion rate as a percentage (for video formats).
+        reach:
+          type: integer
+          description: Unique users reached.
+        dailyBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              impressions:
+                type: integer
+              clicks:
+                type: integer
+              spend:
+                type: number
+    Market:
+      type: object
+      description: A TEGNA local broadcast market.
+      properties:
+        marketCode:
+          type: string
+          description: DMA market code.
+        name:
+          type: string
+          description: Market name (e.g., Tampa Bay, Dallas).
+        state:
+          type: string
+          description: Primary state.
+        stations:
+          type: array
+          description: TEGNA television stations in this market.
+          items:
+            type: string
+        monthlyReach:
+          type: integer
+          description: Estimated monthly audience reach.

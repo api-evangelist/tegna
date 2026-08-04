@@ -1,0 +1,26 @@
+{
+  "provider": "tegna",
+  "sources": [
+    "tegna-audiences-api-openapi.yml",
+    "tegna-campaigns-api-openapi.yml",
+    "tegna-creatives-api-openapi.yml",
+    "tegna-inventory-api-openapi.yml",
+    "tegna-markets-api-openapi.yml",
+    "tegna-ott-campaigns-api-openapi.yml",
+    "tegna-reporting-api-openapi.yml"
+  ],
+  "outputs": [
+    "tegna-audiences-api-openapi.yml",
+    "tegna-campaigns-api-openapi.yml",
+    "tegna-creatives-api-openapi.yml",
+    "tegna-inventory-api-openapi.yml",
+    "tegna-markets-api-openapi.yml",
+    "tegna-ott-campaigns-api-openapi.yml",
+    "tegna-reporting-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
