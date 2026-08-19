@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live error responses observed from https://www.tegna.com/wp-json/ on 2026-08-13, plus the
+  4xx responses in openapi/tegna-content-api-openapi.yml.
+description: >-
+  Error catalog for TEGNA's two publicly callable API surfaces. TEGNA publishes no error
+  reference, so every entry below was either provoked against the live API and recorded from
+  the actual response, or is a documented WordPress REST core code reachable on this deployment.
+  Provoked entries are marked `observed: true`.
+format: custom-json
+rfc9457: false
+content_type: application/json
+envelope:
+  code: Machine-readable error slug, e.g. rest_no_route.
+  message: Human-readable English message.
+  data.status: HTTP status code, duplicated into the body.
+  data.params: Optional. Per-parameter validation messages, keyed by parameter name.
+  data.details: Optional. Per-parameter nested error objects carrying their own code/message.
+envelope_note: >-
+  This is NOT RFC 9457. There is no application/problem+json media type, and none of type,
+  title, detail, instance is present. An agent should key on `code`, not on `message`, which is
+  localizable prose.
+problem_types:
+  - code: rest_no_route
+    status: 404
+    title: No route matched
+    observed: true
+    observed_at: GET https://www.tegna.com/wp-json/wp/v2/nosuchroute
+    observed_body: >-
+      {"code":"rest_no_route","message":"No route was found matching the URL and request
+      method.","data":{"status":404}}
+    remediation: >-
+      Re-read the route index at https://www.tegna.com/wp-json/ — it is the authoritative,
+      live list of routes on this host. Plugin-supplied namespaces come and go without notice.
+  - code: rest_invalid_param
+    status: 400
+    title: Invalid parameter
+    observed: true
+    observed_at: GET https://www.tegna.com/wp-json/wp/v2/posts?per_page=999
+    observed_body: >-
+      {"code":"rest_invalid_param","message":"Invalid parameter(s):
+      per_page","data":{"status":400,"params":{"per_page":"per_page must be between 1
+      (inclusive) and 100 (inclusive)"},"details":{"per_page":{"code":"rest_out_of_bounds",
+      "message":"per_page must be between 1 (inclusive) and 100 (inclusive)","data":null}}}}
+    remediation: >-
+      Read data.details[<param>].code for the precise failure. Values are rejected, not clamped
+      — per_page above 100 is a 400, not a silent downgrade to 100.
+  - code: rest_out_of_bounds
+    status: 400
+    title: Parameter outside allowed range
+    observed: true
+    observed_at: nested in data.details of the rest_invalid_param response above
+    remediation: Clamp the value client-side before sending; per_page has range 1..100.
+  - code: rest_forbidden
+    status: 401
+    title: Not authorized for this route
+    observed: true
+    observed_at: >-
+      GET /wp-json/wp/v2/menus, /wp-json/wp/v2/font-collections,
+      /wp-json/aioseo/v1/options, /wp-json/wp-abilities/v1/abilities — all 401 anonymously
+    remediation: >-
+      These routes require an authenticated WordPress user. Supply an Application Password over
+      HTTP Basic. Note the status is 401 even where the semantics are authorization, not
+      authentication.
+  - code: rest_post_invalid_page_number
+    status: 400
+    title: Page number beyond the available pages
+    observed: false
+    remediation: Read X-WP-TotalPages from the first response and do not request beyond it.
+  - code: rest_post_invalid_id
+    status: 404
+    title: Resource id does not exist
+    observed: false
+    remediation: Confirm the id from a collection response before requesting it directly.
+  - code: rest_cannot_read
+    status: 401
+    title: Cannot read this resource in this context
+    observed: false
+    remediation: >-
+      Usually raised by context=edit on a resource the caller cannot edit. Drop back to
+      context=view.
+  - code: rest_not_logged_in
+    status: 401
+    title: No authenticated user
+    observed: false
+    remediation: Supply an Application Password over HTTP Basic.
+  - code: rest_cookie_invalid_nonce
+    status: 403
+    title: Invalid or expired X-WP-Nonce
+    observed: false
+    remediation: >-
+      Applies to cookie-authenticated browser clients only. Refresh the nonce; server-to-server
+      callers should use Application Passwords instead.
+gaps:
+  - >-
+    No error code is documented by TEGNA anywhere. Everything above is either provoked by this
+    pipeline or inherited from WordPress core, so an integrator has no provider-published
+    contract to code against.
+  - >-
+    api.premion.com returns a completely different, undocumented envelope —
+    {"message":"Access Denied: No Token Provided"} with no `code` field — so the two TEGNA API
+    surfaces do not share an error contract.

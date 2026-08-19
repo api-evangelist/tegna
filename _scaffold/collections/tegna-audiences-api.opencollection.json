@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TEGNA AudienceOne Audiences API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tegna.com/v1/audiences",
+            "params": [
+              {
+                "name": "market",
+                "value": "",
+                "type": "query",
+                "description": "Filter audiences by TEGNA market (DMA code or city name)."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by audience segment type."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve available audience segments for targeting in TEGNA campaigns."
+        },
+        {
+          "info": {
+            "name": "Get Audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tegna.com/v1/audiences/:audienceId",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve details about a specific audience segment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

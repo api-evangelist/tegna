@@ -1,0 +1,29 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/tegna-content-api-openapi.yml, conventions/tegna-conventions.yml, errors/tegna-problem-types.yml
+description: >-
+  Packaged Agent Skills for TEGNA's publicly callable API surfaces. Every operationId referenced
+  in these skills was verified present in the derived OpenAPI, which was itself derived from the
+  provider-served WordPress route index and spot-checked live. TEGNA publishes no skills or
+  AGENTS.md of its own — these are authored by API Evangelist.
+skills:
+  - name: track-tegna-press-releases
+    file: tegna-track-tegna-press-releases.md
+    api: tegna:tegna-content-api
+    operations: [getWpV2Posts, getWpV2PostsById, getWpV2Categories]
+    summary: >-
+      Monitor TEGNA corporate announcements — pagination via X-WP-Total/X-WP-TotalPages, date
+      and topic filtering, payload trimming with _fields, link resolution with _embed.
+  - name: map-tegna-content-surface
+    file: tegna-map-tegna-content-surface.md
+    api: tegna:tegna-content-api
+    operations: [getWpV2Types, getWpV2Taxonomies, getWpV2Categories, getWpV2Tags, getWpV2LeadershipTeam]
+    summary: >-
+      Discover what a TEGNA host actually serves before querying it — the route index is the
+      only documentation, and the custom post types differ per host.
+scope_note: >-
+  Only two skills are written, and both are read-only content flows, because that is the whole
+  of TEGNA's public API surface. No skill is authored for AudienceOne, Premion campaign
+  management, creatives, inventory or reporting: those products have no public API. The
+  quarantined scaffold in _scaffold/ described exactly those flows against a host
+  (api.tegna.com) that does not resolve.

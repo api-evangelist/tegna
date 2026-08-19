@@ -1,0 +1,118 @@
+{
+  "item": [
+    {
+      "id": "f8ad262a-b34c-444d-af1a-18225b560a91",
+      "name": "Markets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44811520-d820-434c-8ac1-eab90c73ae6e",
+          "name": "List Markets",
+          "request": {
+            "name": "List Markets",
+            "description": {
+              "content": "Retrieve available TEGNA broadcast markets for campaign targeting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "markets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b720c9cb-654b-4f71-a1b3-84f9439976f6",
+              "name": "A list of TEGNA broadcast markets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "markets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"marketCode\": \"string\",\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"stations\": [\n      \"string\",\n      \"string\"\n    ],\n    \"monthlyReach\": 8681\n  },\n  {\n    \"marketCode\": \"string\",\n    \"name\": \"string\",\n    \"state\": \"string\",\n    \"stations\": [\n      \"string\",\n      \"string\"\n    ],\n    \"monthlyReach\": 8983\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tegna.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3e900afb-1bd2-4991-9dec-dec649d82086",
+    "name": "TEGNA AudienceOne Audiences Markets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.",
+      "type": "text/plain"
+    }
+  }
+}

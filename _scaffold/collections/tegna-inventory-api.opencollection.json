@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TEGNA AudienceOne Audiences Inventory API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OTT Inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tegna.com/v1/inventory",
+            "params": [
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Filter by streaming platform."
+              },
+              {
+                "name": "genre",
+                "value": "",
+                "type": "query",
+                "description": "Filter by content genre."
+              }
+            ]
+          },
+          "docs": "Retrieve available OTT/CTV inventory across streaming platforms."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

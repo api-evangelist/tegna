@@ -1,22 +1,16 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: derived
-source: openapi/tegna-audience-one-openapi.yml, openapi/tegna-premion-openapi.yml
+source: openapi/tegna-content-api-openapi.yml, openapi/tegna-premion-content-api-openapi.yml
 summary:
   types:
-  - apiKey
   - http
-  api_key_in:
-  - header
 schemes:
-- name: bearerAuth
+- name: applicationPassword
   type: http
-  scheme: bearer
-  bearerFormat: JWT
+  scheme: basic
+  description: WordPress Application Passwords (HTTP Basic). The live index advertises the authorization
+    endpoint at https://www.tegna.com/wp-admin/authorize-application.php. Reads on public content
+    require no credential.
   sources:
-  - openapi/tegna-audience-one-openapi.yml
-- name: apiKeyAuth
-  type: apiKey
-  in: header
-  parameter: X-API-Key
-  sources:
-  - openapi/tegna-premion-openapi.yml
+  - openapi/tegna-content-api-openapi.yml
+  - openapi/tegna-premion-content-api-openapi.yml

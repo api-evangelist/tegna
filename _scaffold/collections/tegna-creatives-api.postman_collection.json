@@ -1,0 +1,191 @@
+{
+  "item": [
+    {
+      "id": "cbf94031-5593-453f-b69f-c863cbb7bf47",
+      "name": "Creatives",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d97a06d-6961-4a80-af3f-95a16961e24d",
+          "name": "List Creatives",
+          "request": {
+            "name": "List Creatives",
+            "description": {
+              "content": "Retrieve video creative assets for OTT campaigns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "creatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "7163d48f-18c7-4ea7-aa84-a3e3d4f8a221",
+              "name": "A list of video creatives.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"creativeId\": \"string\",\n    \"name\": \"string\",\n    \"duration\": 5492,\n    \"format\": \"webm\",\n    \"resolution\": \"1080p\",\n    \"status\": \"approved\",\n    \"uploadedAt\": \"1974-01-01T14:03:53.223Z\"\n  },\n  {\n    \"creativeId\": \"string\",\n    \"name\": \"string\",\n    \"duration\": 4031,\n    \"format\": \"mov\",\n    \"resolution\": \"1080p\",\n    \"status\": \"pending\",\n    \"uploadedAt\": \"1985-12-06T20:43:53.229Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9838cefb-9694-4f21-97e9-40c2ed9f3979",
+          "name": "Upload Creative",
+          "request": {
+            "name": "Upload Creative",
+            "description": {
+              "content": "Upload a new video creative asset for OTT advertising.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "creatives"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"videoUrl\": \"<uri>\",\n  \"duration\": \"<integer>\",\n  \"clickThroughUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1bcd056c-88f1-4cb4-8e8b-1b8e126c09d8",
+              "name": "Creative uploaded successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "creatives"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"videoUrl\": \"<uri>\",\n  \"duration\": \"<integer>\",\n  \"clickThroughUrl\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"creativeId\": \"string\",\n  \"name\": \"string\",\n  \"duration\": 6638,\n  \"format\": \"webm\",\n  \"resolution\": \"720p\",\n  \"status\": \"rejected\",\n  \"uploadedAt\": \"1951-11-23T21:14:06.038Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tegna.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "068fee48-c506-48e2-b44b-c6c022df7efc",
+    "name": "TEGNA AudienceOne Audiences Creatives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.",
+      "type": "text/plain"
+    }
+  }
+}

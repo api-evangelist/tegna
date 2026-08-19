@@ -1,0 +1,43 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, pypi.org, rubygems.org, crates.io, api.nuget.org, search.maven.org,
+  proxy.golang.org, packagist.org, api.github.com/orgs/*
+description: >-
+  Recorded ABSENCE. TEGNA publishes no first-party client library in any public package
+  registry, and operates no public GitHub organization from which one could be distributed.
+  No `SDKs` pointer is emitted in apis.yml because there is no SDK to point at.
+package_count: 0
+official_package_count: 0
+packages: []
+searched:
+  - registry: npm
+    queries: [tegna, premion, audienceone, "@tegna/sdk", "@premion/sdk"]
+    result: 404 on every name; no first-party scope exists
+  - registry: pypi
+    queries: [tegna, premion]
+    result: 404 on every name
+  - registry: github-org
+    queries: [tegna, TEGNA, premion, Premion, tegna-digital, tegnadigital]
+    result: 404 on every org; TEGNA has no public GitHub organization
+  - registry: rubygems
+    queries: [tegna, premion]
+    result: no first-party gem
+  - registry: crates.io
+    queries: [tegna, premion]
+    result: no first-party crate
+  - registry: nuget
+    queries: [tegna, premion]
+    result: no first-party package
+  - registry: maven-central
+    queries: [tegna, premion]
+    result: no first-party artifact
+  - registry: pkg.go.dev
+    queries: [tegna, premion]
+    result: no first-party module
+note: >-
+  This is an expected zero rather than a gap in the search. TEGNA runs no public developer
+  program, so there is no API for an SDK to wrap. The two OpenAPI documents in this repo
+  describe WordPress REST APIs, whose clients are the generic community WordPress libraries
+  (@wordpress/api-fetch, wordpress-api-client, python-wordpress-xmlrpc) — none of which are
+  published by TEGNA and none of which are recorded here as first-party.

@@ -1,0 +1,579 @@
+{
+  "item": [
+    {
+      "id": "8894d493-37e0-42fe-acda-b61f8a494ab2",
+      "name": "Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "686d3af8-97cf-40e9-8d28-39e60803071a",
+          "name": "List Campaigns",
+          "request": {
+            "name": "List Campaigns",
+            "description": {
+              "content": "Retrieve advertising campaigns for the authenticated advertiser.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter campaigns by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e4ca0668-fe15-4ce4-97df-65f02a3baec0",
+              "name": "A list of advertising campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"campaignId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"completed\",\n    \"startDate\": \"1966-10-15\",\n    \"endDate\": \"1977-03-15\",\n    \"budget\": 4935.07531235516,\n    \"dailyBudget\": 3602.064249557684,\n    \"targetAudiences\": [\n      \"string\",\n      \"string\"\n    ],\n    \"targetMarkets\": [\n      \"string\",\n      \"string\"\n    ],\n    \"adFormats\": [\n      \"display\",\n      \"display\"\n    ]\n  },\n  {\n    \"campaignId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"paused\",\n    \"startDate\": \"1985-06-05\",\n    \"endDate\": \"1963-10-14\",\n    \"budget\": 571.5355883523432,\n    \"dailyBudget\": 2296.590302122701,\n    \"targetAudiences\": [\n      \"string\",\n      \"string\"\n    ],\n    \"targetMarkets\": [\n      \"string\",\n      \"string\"\n    ],\n    \"adFormats\": [\n      \"pre-roll\",\n      \"pre-roll\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75665af6-247f-4d07-9f10-7e0f27f5b3e9",
+          "name": "Create Campaign",
+          "request": {
+            "name": "Create Campaign",
+            "description": {
+              "content": "Create a new digital advertising campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"dailyBudget\": \"<double>\",\n  \"targetAudiences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetMarkets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"adFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea06290d-1cda-4f16-9416-426aac16dd30",
+              "name": "Campaign created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"dailyBudget\": \"<double>\",\n  \"targetAudiences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetMarkets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"adFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"completed\",\n  \"startDate\": \"2015-11-08\",\n  \"endDate\": \"2024-06-02\",\n  \"budget\": 2015.082712057782,\n  \"dailyBudget\": 633.1115493347805,\n  \"targetAudiences\": [\n    \"string\",\n    \"string\"\n  ],\n  \"targetMarkets\": [\n    \"string\",\n    \"string\"\n  ],\n  \"adFormats\": [\n    \"native\",\n    \"pre-roll\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0135d6af-a051-46b9-afe2-d9c94d85a8e4",
+              "name": "Invalid campaign data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"dailyBudget\": \"<double>\",\n  \"targetAudiences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetMarkets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"adFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38b2bddd-dff7-46c1-99d5-6ff4aa35bc7f",
+          "name": "Get Campaign",
+          "request": {
+            "name": "Get Campaign",
+            "description": {
+              "content": "Retrieve details for a specific advertising campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "beb575b9-2ef1-44c9-89ac-b5f1bffaefc1",
+              "name": "Campaign details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"completed\",\n  \"startDate\": \"2015-11-08\",\n  \"endDate\": \"2024-06-02\",\n  \"budget\": 2015.082712057782,\n  \"dailyBudget\": 633.1115493347805,\n  \"targetAudiences\": [\n    \"string\",\n    \"string\"\n  ],\n  \"targetMarkets\": [\n    \"string\",\n    \"string\"\n  ],\n  \"adFormats\": [\n    \"native\",\n    \"pre-roll\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ed57796-8792-4bed-ba99-dd41a36a5172",
+              "name": "Campaign not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5133a0d7-2675-4f7b-b68a-a7c7fdfcdeca",
+          "name": "Update Campaign",
+          "request": {
+            "name": "Update Campaign",
+            "description": {
+              "content": "Update an existing advertising campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"dailyBudget\": \"<double>\",\n  \"targetAudiences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetMarkets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"adFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e28eb0fa-8fd7-4475-ba9e-ccd236011a24",
+              "name": "Campaign updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"dailyBudget\": \"<double>\",\n  \"targetAudiences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetMarkets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"adFormats\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"completed\",\n  \"startDate\": \"2015-11-08\",\n  \"endDate\": \"2024-06-02\",\n  \"budget\": 2015.082712057782,\n  \"dailyBudget\": 633.1115493347805,\n  \"targetAudiences\": [\n    \"string\",\n    \"string\"\n  ],\n  \"targetMarkets\": [\n    \"string\",\n    \"string\"\n  ],\n  \"adFormats\": [\n    \"native\",\n    \"pre-roll\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tegna.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "482e6946-fd2f-4453-9d33-eb72d09d81b1",
+    "name": "TEGNA AudienceOne Audiences Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.",
+      "type": "text/plain"
+    }
+  }
+}

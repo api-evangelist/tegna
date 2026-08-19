@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TEGNA AudienceOne Audiences Creatives API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Creatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Creatives",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tegna.com/v1/creatives"
+          },
+          "docs": "Retrieve video creative assets for OTT campaigns."
+        },
+        {
+          "info": {
+            "name": "Upload Creative",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.tegna.com/v1/creatives",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a new video creative asset for OTT advertising."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

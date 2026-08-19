@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TEGNA AudienceOne Audiences Reporting API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reporting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Campaign Performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.tegna.com/v1/campaigns/:campaignId/performance",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve performance metrics for a specific campaign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

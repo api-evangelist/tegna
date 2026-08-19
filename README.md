@@ -42,9 +42,16 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TEGNA Inc. is an American broadcast, digital media, and marketing services company headquartered in Tysons, Virginia, operating as a subsidiary of Nexstar Media Group following FCC approval of the $6.2 billion acquisition in March 2026. TEGNA operates 64 full-power broadcast television stations across 51 U.S. markets, reaching approximately 39 percent of all television households. TEGNA offers digital marketing solutions including AudienceOne first-party data targeting, OTT/CTV advertising through its Premion platform, and the TEGNA Marketing Solutions full-service agency. The company provides advertising APIs and programmatic integrations for digital, broadcast, streaming, and connected TV advertising campaigns.
+
+TEGNA Inc. is an American broadcast, digital media, and marketing services company headquartered in Tysons, Virginia, operating as a subsidiary of Nexstar Media Group following FCC approval of the $6.2 billion acquisition in March 2026. TEGNA operates 64 full-power broadcast television stations across 51 U.S. markets, reaching approximately 39 percent of all television households. Its digital marketing portfolio includes AudienceOne first-party data targeting, OTT/CTV advertising through the Premion platform, and the TEGNA Marketing Solutions full-service agency.
 
 **APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml)
+
+## What TEGNA actually publishes
+
+**TEGNA runs no public developer program.** There is no developer portal, no API documentation, no SDK, no public GitHub organization, no MCP server and no A2A agent card. `developer.tegna.com`, `docs.tegna.com` and `developers.tegna.com` do not resolve. AudienceOne and Premion are transacted through insertion orders, programmatic deal IDs and agency contracts — see [`plans/tegna-plans-pricing.yml`](plans/tegna-plans-pricing.yml).
+
+What TEGNA *does* serve, verified live on 2026-08-13, is a pair of public WordPress REST content APIs and one token-gated advertising backend.
 
 ## Scope
 
@@ -58,59 +65,75 @@ TEGNA Inc. is an American broadcast, digital media, and marketing services compa
 - Digital Advertising
 - OTT
 - CTV
+- Local News
+- Content API
 - Fortune 500
 
 ## Timestamps
 
 - **Created:** 2026-03-24
-- **Modified:** 2026-05-19
+- **Modified:** 2026-08-13
 
 ## APIs
 
-### TEGNA AudienceOne API
+### TEGNA Content API (WordPress REST)
 
-TEGNA AudienceOne is a first-party data targeting platform enabling advertisers to reach audiences across TEGNA's 64 local television brands in 51 markets using privacy-first targeting. The platform provides programmatic access to audience segments, campaign management, and performance analytics for digital, display, native, and pre-roll video advertising. Supports geofencing, retargeting, and precision targeting without third-party cookies.
+The public, unauthenticated read API behind www.tegna.com — TEGNA's corporate and press site. 264 routes across 366 operations serving posts, pages, media, categories, tags, taxonomies, block types, site-health and the WordPress Abilities namespace as JSON, plus oEmbed and AIOSEO metadata. Reads on public content require no credential; writes require a WordPress Application Password.
 
-- **Human URL:** [https://www.tegna.com/advertise/solutions/digital/](https://www.tegna.com/advertise/solutions/digital/)
-- **Base URL:** `https://api.tegna.com`
-
-#### Tags
-
-- Advertising
-- Audience Targeting
-- Digital Media
-- First-Party Data
-- Programmatic
+- **Human URL:** [https://www.tegna.com/](https://www.tegna.com/)
+- **Base URL:** `https://www.tegna.com/wp-json`
 
 #### Properties
 
-- [Documentation](https://www.tegna.com/advertise/solutions/digital/)
-- [OpenAPI](openapi/tegna-audience-one-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tegna-audience-one.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tegna-audience-one.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/tegna-campaign-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [OpenAPI](openapi/tegna-content-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html) *(derived by API Evangelist from the provider-served route index; TEGNA publishes no OpenAPI)*
+- [Documentation](https://developer.wordpress.org/rest-api/)
+- [Authentication](authentication/tegna-authentication.yml)
+- [Conventions](conventions/tegna-conventions.yml)
+- [ErrorCatalog](errors/tegna-problem-types.yml)
+- [DataModel](data-model/tegna-data-model.yml)
 
-### TEGNA Premion OTT Advertising API
+### PREMION Content API (WordPress REST)
 
-Premion is TEGNA's over-the-top (OTT) and connected TV (CTV) advertising platform, enabling advertisers to reach audiences across premium streaming services including Roku, Hulu, Amazon Fire TV, and other OTT platforms. The Premion API provides campaign creation, audience targeting, impression delivery, and performance reporting for streaming video advertising at local and national scale.
+The public, unauthenticated read API behind premion.com, the marketing site for Premion — TEGNA's OTT/CTV advertising business. 186 routes across 291 operations. This is a content API, not the Premion advertising platform API.
 
 - **Human URL:** [https://premion.com/](https://premion.com/)
-- **Base URL:** `https://api.premion.com`
-
-#### Tags
-
-- OTT Advertising
-- CTV
-- Connected TV
-- Streaming
-- Video Advertising
+- **Base URL:** `https://premion.com/wp-json`
 
 #### Properties
 
-- [Documentation](https://premion.com/)
-- [OpenAPI](openapi/tegna-premion-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/tegna-premion.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/tegna-premion.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [OpenAPI](openapi/tegna-premion-content-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html) *(derived, as above)*
+- [Documentation](https://developer.wordpress.org/rest-api/)
+- [Authentication](authentication/tegna-authentication.yml)
+- [Conventions](conventions/tegna-conventions.yml)
+
+### Premion Advertising Platform API (gated)
+
+A live but undocumented and token-gated API behind Premion's OTT/CTV advertising platform. Probed 2026-08-13: the host root returns `200 {"message":"App is running"}`, `/health` returns 200, and every path under `/api` returns `401 {"message":"Access Denied: No Token Provided"}`. No OpenAPI, Swagger, GraphQL, docs or discovery document is served at any probed location. Recorded because the surface demonstrably exists; no specification is claimed.
+
+- **Human URL:** [https://premion.com/](https://premion.com/)
+- **Base URL:** `https://api.premion.com/api`
+
+## Not published by TEGNA
+
+Recorded absences. Each was probed, and each empty result is a measurement rather than a gap in the search.
+
+| Surface | Result |
+|---|---|
+| Developer portal / API docs | None. `developer.tegna.com`, `docs.tegna.com`, `developers.tegna.com` all NXDOMAIN |
+| OpenAPI / Swagger / GraphQL | None served. `api.premion.com/openapi.json`, `/swagger.json`, `/api-docs`, `/docs`, `/redoc` all 404 |
+| `/.well-known/*` | 36 probes across 4 hosts, 36 × 404. No `WellKnown` or `SecurityTxt` pointer emitted |
+| A2A agent card | `agent-card.json` and `agent.json` 404 on every host. No `a2a/` artifact written |
+| MCP server | None hosted, none packaged. `mcp/tegna-mcp.yml` records `deployment.mode: none` and wires **no** `MCPServer` pointer |
+| SDKs / packages | Zero across npm, PyPI, RubyGems, crates.io, NuGet, Maven, pkg.go.dev. No public GitHub org |
+| Status page | None. `tegna.statuspage.io` returns 200 but so does a random control subdomain — a wildcard soft-200, not a status page |
+| Rate limits | No `X-RateLimit-*`, `RateLimit-*` or `Retry-After` header on any response |
+| Idempotency | Not supported; no idempotency key accepted |
+| Compliance / trust center | No SOC 2 / ISO 27001 / PCI / HIPAA / FedRAMP claim. `trust.tegna.com` NXDOMAIN |
+| Events / webhooks / AsyncAPI | No event surface. Not applicable rather than failed |
+
+## Quarantined artifacts
+
+Nine OpenAPI documents and everything derived from them were moved to [`_scaffold/`](_scaffold/README.md) in the 2026-08-13 pass. They declare `api.tegna.com`, which is **NXDOMAIN**, and a Premion `/v1` base path that returns 404. They were written by API Evangelist, not by TEGNA, and carried no provenance marker. See [`_scaffold/README.md`](_scaffold/README.md) for the full evidence table.
 
 ## Common Properties
 
@@ -121,7 +144,13 @@ Premion is TEGNA's over-the-top (OTT) and connected TV (CTV) advertising platfor
 - [Documentation](https://www.tegna.com/advertise/solutions/broadcast/)
 - [Documentation](https://www.tegna.com/advertise/solutions/streaming/)
 - [Website](https://premion.com/)
+- [Support](https://www.tegna.com/contact/)
+- [HelpCenter](https://tegnadigital.atlassian.net/servicedesk/customer/portal/17)
+- [TermsOfService](https://www.tegna.com/terms-of-service/)
+- [PrivacyPolicy](https://www.tegna.com/privacy-policy/)
 - [LinkedIn](https://www.linkedin.com/company/tegna)
+- [Blog](https://www.tegna.com/press/)
+- [LLMsTxt](llms/tegna-llms.txt) — verbatim from `https://www.tegna.com/llms.txt` (200, `text/plain`)
 
 ## Maintainers
 

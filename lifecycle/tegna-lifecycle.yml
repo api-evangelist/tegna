@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live probes of TEGNA hosts and headers on 2026-08-13, plus
+  openapi/tegna-content-api-openapi.yml.
+description: >-
+  Lifecycle posture for TEGNA's API surfaces. TEGNA publishes no versioning policy, no
+  deprecation policy, no SLA and no status page. Neither a `StatusPage` nor a `Deprecation`
+  pointer is emitted in apis.yml, because the probes that would justify them all missed.
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  owned_by: upstream WordPress, not TEGNA
+  policy_published: false
+  note: >-
+    The only version identifier on either surface is the WordPress core namespace `wp/v2`.
+    TEGNA neither sets it nor commits to it. The plugin-supplied namespaces alongside it
+    (aioseo/v1, yoast/v1, contact-form-7/v1, wordfence/v1, editorskit/v1, gutenberghub-*, ...)
+    appear and disappear with plugin installs and receive no announcement at all.
+  discovery: >-
+    The live route index at https://www.tegna.com/wp-json/ is the only authoritative statement
+    of what exists. It changed shape between the two hosts already: tegna.com serves 405 routes
+    across 14 namespaces, premion.com serves 290 across 16, and only 4 namespaces overlap.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  probe: >-
+    GET https://www.tegna.com/wp-json/wp/v2/posts?per_page=1 — response carried no Sunset, no
+    Deprecation, and no Link rel="sunset" header.
+  deprecated_operations: []
+  note: >-
+    No operation in either derived OpenAPI is marked deprecated, because the provider-served
+    route index marks none. Absence of a marker here is not a guarantee of stability — it means
+    TEGNA has no mechanism to signal one.
+status_page:
+  published: false
+  probes:
+    - {url: "https://status.tegna.com", result: NXDOMAIN}
+    - {url: "https://trust.tegna.com", result: NXDOMAIN}
+    - {url: "https://tegna.statuspage.io", status: 200, verdict: false-positive}
+    - {url: "https://premion.statuspage.io", status: 200, verdict: false-positive}
+    - {url: "https://status.premion.com", result: "DNS resolves to an ACM validation CNAME only; no A record, connection fails"}
+  false_positive_note: >-
+    tegna.statuspage.io and premion.statuspage.io both return HTTP 200 — but so does the
+    control host zzqxnotarealcompany.statuspage.io. All three 302 to
+    https://www.atlassian.com/software/statuspage, Atlassian's own marketing page. This is a
+    wildcard soft-200, not a status page, and it is exactly the failure mode that would
+    otherwise have credited TEGNA with an operational surface it does not run.
+  dangling_record_note: >-
+    status.premion.com has an orphaned AWS ACM certificate-validation CNAME
+    (_b300bcfae831033a9969be450cf0c2f5.xlfgrmvvlj.acm-validations.aws) and nothing serving on
+    it. Someone at Premion started standing up a status page and abandoned it. A dangling
+    validation record is low risk on its own but is a catalog-freshness and subdomain-hygiene
+    signal worth reporting to the provider.
+sla:
+  published: false
+  note: No service-level agreement is published for any TEGNA API surface.
+changelog:
+  api_changelog_published: false
+  note: >-
+    TEGNA publishes corporate press releases at https://www.tegna.com/press/ and an RSS feed at
+    https://www.tegna.com/feed/, but neither is an API changelog — no entry describes an
+    interface change. No `ChangeLog` pointer is emitted.
+support:
+  developer_channel: false
+  corporate_contact: https://www.tegna.com/contact/
+  premion_service_desk: https://tegnadigital.atlassian.net/servicedesk/customer/portal/17
+  note: >-
+    The Premion Central Service Desk is a real Atlassian JSD portal (HTTP 200) but is a
+    customer-login surface, not open developer support.

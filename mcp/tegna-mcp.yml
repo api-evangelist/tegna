@@ -1,0 +1,63 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/tegna-content-api-openapi.yml (derived candidate); live probes for the search
+status: candidate
+description: >-
+  TEGNA ships NO MCP server — not hosted, not stdio, not packaged. The tools below are a
+  CANDIDATE list derived from the read operations of the live WordPress REST API, offered as a
+  design starting point. Nothing here is published by TEGNA, and no `MCPServer` pointer is
+  wired into apis.yml, because emitting one would credit TEGNA with an agent surface it does
+  not serve.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: probed
+search:
+  registries_checked:
+    - {name: npm, queries: ["@tegna/mcp", "tegna-mcp", "@premion/mcp", "premion-mcp"], result: 404}
+    - {name: pypi, queries: [tegna-mcp, premion-mcp], result: 404}
+    - {name: github-org, queries: [tegna, premion, tegna-digital], result: 404}
+  endpoints_probed:
+    - {url: "https://www.tegna.com/.well-known/mcp.json", status: 404}
+    - {url: "https://premion.com/.well-known/mcp.json", status: 404}
+    - {url: "https://api.premion.com/.well-known/mcp.json", status: 404}
+    - {url: "https://www.tegna.com/.well-known/agent-card.json", status: 404}
+    - {url: "https://api.premion.com/openapi.json", status: 404}
+  result: no hosted MCP endpoint and no stdio package exists
+candidate_tools:
+  - name: list_tegna_posts
+    description: List press releases and posts from TEGNA's corporate newsroom.
+    rest: getWpV2Posts
+    api: tegna:tegna-content-api
+  - name: get_tegna_post
+    description: Retrieve a single TEGNA press release or post by id.
+    rest: getWpV2PostsById
+    api: tegna:tegna-content-api
+  - name: list_tegna_pages
+    description: List pages on www.tegna.com, including the advertising solutions pages.
+    rest: getWpV2Pages
+    api: tegna:tegna-content-api
+  - name: list_tegna_media
+    description: List media assets published on TEGNA's corporate site.
+    rest: getWpV2Media
+    api: tegna:tegna-content-api
+  - name: list_tegna_categories
+    description: List content categories used to organize TEGNA's newsroom.
+    rest: getWpV2Categories
+    api: tegna:tegna-content-api
+  - name: list_premion_posts
+    description: List posts from the Premion OTT/CTV marketing site.
+    rest: getWpV2Posts
+    api: tegna:tegna-premion-content-api
+  - name: search_tegna_content
+    description: Full-text search across TEGNA corporate content.
+    rest: getWpV2Search
+    api: tegna:tegna-content-api
+note: >-
+  Every candidate tool binds to a real, verified operationId in
+  openapi/tegna-content-api-openapi.yml, which was itself derived from the provider-served
+  route index. No endpoint URL is invented: `endpoint` is deliberately null because guessing an
+  MCP path that happened to return 200 would read as a verified agent surface.

@@ -1,0 +1,59 @@
+generated: '2026-08-13'
+method: probed
+source: live GET probes of /.well-known/* on every host in apis.yml
+description: >-
+  Recorded ABSENCE. Every /.well-known/ discovery path was probed on all four TEGNA-controlled
+  hosts and every one returned 404 — 36 probes, 36 misses. No document of any kind is served
+  from the /.well-known/ namespace. No WellKnown, SecurityTxt, APICatalog or AgentCard pointer
+  is emitted in apis.yml, because there is nothing for those pointers to assert.
+hits: 0
+probes: 36
+note: >-
+  Every 404 body was HTML (the site's own 404 page on the three WordPress/Drupal hosts, an
+  Express "Cannot GET" stub on api.premion.com), so there is no soft-200 to mistake for a
+  document. This is a clean negative result, not a blocked probe.
+hosts:
+  - host: https://www.tegna.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/mcp.json, status: 404}
+  - host: https://premion.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/mcp.json, status: 404}
+  - host: https://api.premion.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/mcp.json, status: 404}
+  - host: https://www.nexstar.tv
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /.well-known/mcp.json, status: 404}

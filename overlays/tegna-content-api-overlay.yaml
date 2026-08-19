@@ -1,0 +1,75 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the TEGNA Content API
+  version: 1.0.0
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: openapi/tegna-content-api-openapi.yml
+  note: >-
+    Captures API Evangelist's enhancements as an Overlay so the derived specification is never
+    mutated in place. Every fact asserted below was observed on a live response from
+    https://www.tegna.com/wp-json/ on 2026-08-13.
+extends: openapi/tegna-content-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      contact:
+        name: TEGNA
+        url: https://www.tegna.com/contact/
+      license:
+        name: Proprietary
+        url: https://www.tegna.com/terms-of-service/
+      x-api-evangelist:
+        surface: content
+        provider_published_spec: false
+        note: >-
+          TEGNA publishes no OpenAPI. This document is derived from the WordPress REST route
+          index the provider serves at https://www.tegna.com/wp-json/.
+  - target: $.info
+    update:
+      x-runtime-semantics:
+        idempotency: false
+        rate_limit_headers: []
+        pagination:
+          style: page-number
+          params: [page, per_page, offset]
+          headers: [X-WP-Total, X-WP-TotalPages, Link]
+          per_page_max: 100
+          per_page_over_max: 400 rest_invalid_param — rejected, not clamped
+        sparse_fieldsets: {param: _fields, verified: true}
+        embedding: {param: _embed, verified: true}
+        error_envelope: {code: string, message: string, data: {status: integer}}
+        rfc9457: false
+        edge_cache: "cache-control: max-age=600, must-revalidate (Cloudflare + WP Engine)"
+        request_id: none — only Cloudflare's cf-ray is returned
+  - target: $.servers
+    update:
+      - url: https://www.tegna.com/wp-json
+        description: >-
+          Live WordPress REST API. Verified reachable 2026-08-13; 12 sampled routes returned
+          200 or 401, none returned 404.
+  - target: $.components.securitySchemes.applicationPassword
+    update:
+      x-anonymous-read: >-
+        Public content routes (posts, pages, media, categories, tags, users, taxonomies, search)
+        return 200 with no credential. Privileged routes (menus, font-collections, icons,
+        aioseo/v1/*, wp-abilities/v1) return 401.
+  - target: $.paths['/wp/v2/posts'].get
+    update:
+      x-observed:
+        total_records: 1608
+        observed_on: '2026-08-13'
+        headers: {x-wp-total: 1608, x-wp-totalpages: 804}
+  - target: $.paths['/wp/v2/leadership-team'].get
+    update:
+      x-tegna-custom-type: true
+      description: >-
+        TEGNA-specific custom post type carrying executive leadership profiles, with an `acf`
+        (Advanced Custom Fields) block alongside the standard post shape. Public, populated.
+  - target: $.paths['/wp/v2/board-of-director'].get
+    update:
+      x-tegna-custom-type: true
+      description: >-
+        TEGNA-specific custom post type for board profiles. Route is public and returns 200 with
+        an empty array — registered but unpopulated for anonymous callers.

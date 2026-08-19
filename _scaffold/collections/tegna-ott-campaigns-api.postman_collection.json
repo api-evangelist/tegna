@@ -1,0 +1,411 @@
+{
+  "item": [
+    {
+      "id": "d11715a0-94ec-4f25-96b4-634d6ae17281",
+      "name": "OTT Campaigns",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d58781de-291f-4180-8c06-bb4c3c789414",
+          "name": "List OTT Campaigns",
+          "request": {
+            "name": "List OTT Campaigns",
+            "description": {
+              "content": "Retrieve OTT/CTV advertising campaigns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "07b1f725-e321-4aad-8dde-eee230289a31",
+              "name": "A list of OTT campaigns.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"campaignId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"draft\",\n    \"startDate\": \"1971-09-02\",\n    \"endDate\": \"2021-03-27\",\n    \"budget\": 8741.261535289714,\n    \"targetPlatforms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"targetGenres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"impressionGoal\": 9367,\n    \"completionRateTarget\": 7599.934448654197\n  },\n  {\n    \"campaignId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"completed\",\n    \"startDate\": \"1974-12-09\",\n    \"endDate\": \"1985-05-24\",\n    \"budget\": 9136.434286506923,\n    \"targetPlatforms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"targetGenres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"impressionGoal\": 930,\n    \"completionRateTarget\": 8896.441952768793\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e048fba3-7838-427f-9691-480443a61d01",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e803fac-2f9f-46d9-ac44-e517af5ffa5c",
+          "name": "Create OTT Campaign",
+          "request": {
+            "name": "Create OTT Campaign",
+            "description": {
+              "content": "Create a new OTT/CTV advertising campaign on Premion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"targetPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetGenres\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"impressionGoal\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48b53d68-64d1-46f1-ae31-9a98a3a48812",
+              "name": "OTT campaign created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"targetPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetGenres\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"impressionGoal\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"completed\",\n  \"startDate\": \"1969-08-23\",\n  \"endDate\": \"1958-03-26\",\n  \"budget\": 892.4096366486845,\n  \"targetPlatforms\": [\n    \"string\",\n    \"string\"\n  ],\n  \"targetGenres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"impressionGoal\": 980,\n  \"completionRateTarget\": 9178.351811220453\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67f7e62c-0703-4776-b156-de9216c87e62",
+              "name": "Invalid campaign data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"budget\": \"<double>\",\n  \"endDate\": \"<date>\",\n  \"targetPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetGenres\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"impressionGoal\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59f75975-ff36-4fa0-937c-607a76924b2f",
+          "name": "Get OTT Campaign",
+          "request": {
+            "name": "Get OTT Campaign",
+            "description": {
+              "content": "Retrieve details for a specific OTT campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ebfd7cd4-73a3-4781-b0d0-601db9005cdd",
+              "name": "OTT campaign details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"completed\",\n  \"startDate\": \"1969-08-23\",\n  \"endDate\": \"1958-03-26\",\n  \"budget\": 892.4096366486845,\n  \"targetPlatforms\": [\n    \"string\",\n    \"string\"\n  ],\n  \"targetGenres\": [\n    \"string\",\n    \"string\"\n  ],\n  \"impressionGoal\": 980,\n  \"completionRateTarget\": 9178.351811220453\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edbaf1c2-6128-4dda-85a6-1118545248d6",
+              "name": "Campaign not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tegna.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f34e690c-b7ba-4dd2-bd92-508ef41e8b78",
+    "name": "TEGNA AudienceOne Audiences OTT Campaigns API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -4,37 +4,75 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: TEGNA
 providerId: tegna
 created: '2026-05-04'
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live response headers observed on https://www.tegna.com/wp-json/ and https://api.premion.com
+  on 2026-08-13. The 2026-05-04 scaffold values were removed on 2026-08-11 (roadmap#35); this
+  revision replaces the remaining prose with what was actually measured.
+reconciled: true
 tags:
   - Broadcasting
   - Media
-  - Television
   - Digital Advertising
   - OTT
-  - CTV
-  - Fortune 500
+  - Content API
   - Rate Limiting
-description: TEGNA does not publish a developer rate-limit specification. Programmatic deal IDs and
-  any direct API integrations (AudienceOne, Premion) operate inside agency / DSP / SSP partnerships
-  whose throttling is set on the partner platform side.
+description: >-
+  TEGNA publishes no rate limits for any API surface, and returns no rate-limit signal at
+  runtime. This is a measured zero, not an unchecked gap: response headers were captured from
+  live 200, 400, 401 and 404 responses on both publicly callable hosts and none carried a
+  limit, a remaining count, a reset time or a Retry-After.
+limit_count: 0
 sources:
-  - https://www.tegna.com/
-  - https://www.premion.com/
-notes: No public TEGNA developer documentation enumerating per-second / per-minute API limits could
-  be located. Throttling for AudienceOne and Premion integrations is managed through the third-party
-  ad-tech platforms TEGNA uses, not as a published TEGNA limit.
+  - https://www.tegna.com/wp-json/wp/v2/posts
+  - https://api.premion.com/api
+observed_headers:
+  ratelimit_standard: absent      # RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset (RFC 9239 draft)
+  x_ratelimit_legacy: absent      # X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset
+  retry_after: absent
+  exhaustion_status: not observed
+  present_instead:
+    - {name: cache-control, value: "max-age=600, must-revalidate"}
+    - {name: x-cacheable, value: "SHORT on 200 collections, non200 on errors"}
+    - {name: cf-cache-status, description: Cloudflare edge cache disposition}
+    - {name: cf-ray, description: Cloudflare request id — the only per-request correlator}
 limits:
-  - name: Partner-Defined Limits
-    scope: account
-    metric: varies
-    limit: see partner ad-tech platform
-    notes: Rate limits for programmatic and audience-data integrations are defined by the underlying
-      ad-tech platforms (DSP / SSP / DMP) rather than published by TEGNA.
+  - name: Undocumented edge protection
+    scope: unknown
+    metric: unknown
+    limit: not published
+    window: not published
+    notes: >-
+      Cloudflare fronts both www.tegna.com and premion.com, and WP Engine sits behind it, so
+      edge throttling almost certainly exists. Nothing is advertised to a client, so an
+      integrator cannot distinguish a throttle from an outage, and cannot back off correctly.
+  - name: Hard parameter ceiling (not a rate limit, but the only published bound)
+    scope: per-request
+    metric: records per page
+    limit: 100
+    window: per request
+    notes: >-
+      per_page is capped at 100 by the route index and enforced with a 400 rest_invalid_param /
+      rest_out_of_bounds. Values above the cap are rejected rather than clamped. This is the
+      only quantitative bound TEGNA's API actually publishes, and it bounds page size, not call
+      rate.
 policies:
-  - name: Partner Platform Governance
-    description: Throttling and quota behavior follow the partner platform terms. TEGNA does not
-      publish independent API rate-limit numbers for its advertising surface.
+  - name: No published throttling policy
+    description: >-
+      TEGNA documents no per-second, per-minute, per-key or per-account limit for any surface,
+      and operates no developer portal where one could be published.
+  - name: Partner platform governance (advertising surface)
+    description: >-
+      Programmatic and audience-data integrations for AudienceOne and Premion are transacted
+      through third-party DSP/SSP/DMP platforms. Any throttling there is set by the partner
+      platform, not published by TEGNA.
+  - name: Crawler policy is stricter than API policy
+    description: >-
+      robots.txt on both www.tegna.com and premion.com disallows GPTBot and ChatGPT-User
+      entirely and sets Crawl-delay 10 for everyone else. The JSON APIs themselves apply no
+      user-agent restriction — every probe in this pass succeeded with a browser user agent.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

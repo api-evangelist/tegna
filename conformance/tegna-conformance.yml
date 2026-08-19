@@ -1,0 +1,119 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/tegna-content-api-openapi.yml, openapi/tegna-premion-content-api-openapi.yml,
+  conventions/tegna-conventions.yml, live probes 2026-08-13.
+description: >-
+  Cross-cutting standards conformance for TEGNA's publicly callable API surfaces. Every entry
+  carries the evidence it was decided on. TEGNA makes no compliance or certification claim
+  anywhere on its developer-facing surface, so no `Compliance` pointer is emitted in apis.yml.
+standards:
+  - id: openapi
+    conforms: true
+    evidence: >-
+      Two OpenAPI 3.1.0 documents in openapi/ validate and describe live, verified-callable
+      routes. NOTE: these are DERIVED by API Evangelist from the provider-served WordPress route
+      index — TEGNA itself publishes no OpenAPI. Each carries info.x-provenance saying so.
+  - id: rest
+    conforms: true
+    evidence: >-
+      Resource-oriented paths, correct verb semantics (GET/POST/DELETE), JSON representations,
+      HTTP status codes used conventionally.
+  - id: hateoas
+    conforms: true
+    evidence: >-
+      Every resource carries a _links object with self/collection/about/author/replies/
+      version-history/wp:attachment/wp:term/curies rels, and _embed inlines them. Observed live.
+      Unusually strong for this catalog — most REST APIs profiled ship no hypermedia at all.
+  - id: rfc8288
+    conforms: true
+    evidence: >-
+      Web Linking. Collection responses return `Link: <...page=2>; rel="next"`, and every
+      response returns `Link: <https://www.tegna.com/wp-json/>; rel="https://api.w.org/"`
+      pointing at the machine-readable route index. Observed live.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors use a custom {code, message, data.status} envelope with content-type
+      application/json. No application/problem+json, no type/title/detail/instance. See
+      errors/tegna-problem-types.yml.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Page-number pagination via page/per_page (1..100) with X-WP-Total and X-WP-TotalPages
+      response headers, both named in Access-Control-Expose-Headers. Observed live.
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No idempotency key header is accepted or advertised on either surface. Retrying a POST to
+      a collection route creates a duplicate resource.
+  - id: rate-limiting
+    conforms: false
+    evidence: >-
+      No X-RateLimit-*, RateLimit-* or Retry-After header observed on any response, and no
+      limits published. Cloudflare fronts both hosts but signals nothing to the client.
+  - id: rfc8594
+    conforms: false
+    evidence: No Sunset or Deprecation header on any response; no deprecation policy published.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      No OAuth. Authentication is HTTP Basic via WordPress Application Passwords.
+      /.well-known/oauth-authorization-server returned 404 on all four hosts.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returned 404 on all four hosts.
+  - id: rfc9116
+    conforms: false
+    evidence: /.well-known/security.txt returned 404 on all four hosts. No security contact published.
+  - id: rfc8615
+    conforms: false
+    evidence: >-
+      No document is served from the /.well-known/ namespace on any host — 36 probes, 36 404s.
+      See well-known/tegna-well-known.yml.
+  - id: cors
+    conforms: true
+    evidence: >-
+      Access-Control-Allow-Headers and Access-Control-Expose-Headers are set on API responses,
+      exposing X-WP-Total, X-WP-TotalPages and Link to browser clients. Observed live.
+  - id: json-schema
+    conforms: partial
+    evidence: >-
+      The WordPress route index publishes per-argument type/enum/default/minimum/maximum in a
+      JSON-Schema-shaped form, which is what made the derived OpenAPI possible. It is not a
+      formally versioned JSON Schema document.
+  - id: asyncapi
+    conforms: false
+    evidence: >-
+      No event, webhook or streaming surface is published on either host. Not applicable rather
+      than failed — see the note below.
+  - id: mcp
+    conforms: false
+    evidence: No MCP server, hosted or packaged. /.well-known/mcp.json 404 on all hosts.
+  - id: a2a
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json both 404 on all four hosts. No
+      a2a/ artifact is written.
+compliance_claims:
+  published: false
+  certifications: []
+  trust_center: false
+  note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP claim appears on any TEGNA developer-facing
+    surface, and probe-security-programs found no trust center (trust.tegna.com is NXDOMAIN).
+    TEGNA's privacy policy addresses consumer advertising data, not API compliance. Because
+    there is no published certification, no `Compliance` and no `TrustCenter` pointer is wired.
+not_applicable:
+  - >-
+    asyncapi/ is not written: neither surface publishes events, webhooks or streaming, so the
+    asyncapi scoring family is correctly out of the denominator rather than failed.
+  - >-
+    scopes/ is not written: derive-oauth-scopes found zero oauth2 securitySchemes. The auth
+    model is HTTP Basic, which has no scope surface.
+  - >-
+    errors/tegna-decline-codes.yml is not written: TEGNA is not a payments or card-authorization
+    provider.
+  - >-
+    grpc/, cli/, components/, sandbox/ are not written: no .proto, no first-party CLI, no
+    embeddable component library and no sandbox or test environment is published.

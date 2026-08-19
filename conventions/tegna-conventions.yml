@@ -1,0 +1,137 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  Live responses observed from https://www.tegna.com/wp-json/ on 2026-08-13, plus
+  openapi/tegna-content-api-openapi.yml derived from the provider-served route index.
+description: >-
+  Cross-cutting runtime semantics for the two publicly callable TEGNA API surfaces. Every value
+  below was OBSERVED on a live response, not read from documentation — TEGNA publishes no API
+  documentation of its own. The semantics are those of the WordPress REST API as TEGNA has it
+  deployed (WP Engine + Cloudflare).
+applies_to:
+  - tegna:tegna-content-api
+  - tegna:tegna-premion-content-api
+auth:
+  style: none-for-reads
+  scheme: HTTP Basic (WordPress Application Passwords) for writes and privileged reads
+  header: Authorization
+  alternate_header: X-WP-Nonce
+  authorization_endpoint: https://www.tegna.com/wp-admin/authorize-application.php
+  observed: >-
+    Public content routes (posts, pages, media, categories, tags, users, taxonomies) return 200
+    with no credential. Privileged routes (menus, font-collections, aioseo/v1/*, wp-abilities/v1)
+    return 401 anonymously.
+  detail: authentication/tegna-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key header is accepted or advertised. The WordPress REST API has no
+    idempotency mechanism, and none is layered on at the edge. No `Idempotency` pointer is
+    emitted in apis.yml. Retrying a write is NOT safe: POST to a collection route creates a new
+    resource each time.
+pagination:
+  style: page-number
+  parameters:
+    - {name: page, in: query, type: integer, default: 1, description: 1-based page number.}
+    - {name: per_page, in: query, type: integer, default: 10, minimum: 1, maximum: 100,
+       description: Records per page. Values above 100 are rejected, not clamped.}
+    - {name: offset, in: query, type: integer, description: Skip N records; overrides page.}
+  response_headers:
+    - {name: X-WP-Total, description: "Total records matching the query. Observed: 1608 on /wp/v2/posts."}
+    - {name: X-WP-TotalPages, description: "Total pages at the current per_page. Observed: 804 at per_page=2."}
+    - {name: Link, description: 'RFC 8288 links, rel="next" and rel="prev".'}
+  cors_note: >-
+    All three are named in Access-Control-Expose-Headers, so a browser client can read them
+    cross-origin.
+  observed_example: >-
+    GET /wp-json/wp/v2/posts?per_page=2&page=1 -> 200, x-wp-total: 1608, x-wp-totalpages: 804,
+    link: <...posts?per_page=2&page=2>; rel="next"
+sparse_fieldsets:
+  supported: true
+  parameter: _fields
+  description: Comma-separated list of top-level properties to return; shrinks the payload.
+  verified: >-
+    Observed live — GET /wp-json/wp/v2/posts?per_page=1&_fields=id,slug returned only id and
+    slug. Not advertised in the route index; confirmed by probe.
+embedding:
+  supported: true
+  parameter: _embed
+  description: >-
+    Inlines linked resources under _embedded, replacing a follow-up request per link. The
+    complement of _fields.
+  verified: >-
+    Observed live — _embed=1 on /wp/v2/posts returned an _embedded object containing `author`
+    and `wp:term`.
+  discovery:
+    mechanism: Every resource carries a _links object (HAL-style) naming its related resources.
+    observed_rels: [self, collection, about, author, replies, version-history,
+                    predecessor-version, "wp:attachment", "wp:term", curies]
+ordering_and_filtering:
+  parameters:
+    - {name: search, description: Full-text search across the collection.}
+    - {name: orderby, description: "Sort field; enum varies per collection (date, id, title, slug, relevance)."}
+    - {name: order, description: "asc or desc."}
+    - {name: after, description: ISO 8601 date; limit to resources published after it.}
+    - {name: before, description: ISO 8601 date; limit to resources published before it.}
+    - {name: include, description: Restrict to specific ids.}
+    - {name: exclude, description: Omit specific ids.}
+    - {name: status, description: "Publication status. Anonymous callers may only request 'publish'."}
+versioning:
+  style: namespace-in-path
+  current: wp/v2
+  namespaces_served:
+    tegna.com: [wp/v2, oembed/1.0, aioseo/v1, wp-abilities/v1, contact-form-7/v1, wp-site-health/v1,
+                wp-block-editor/v1, wpe/cache-plugin/v1, cptui/v1, redirection/v1, simplystatic/v1,
+                userfeedback/v1, omapp/v1, wpe_sign_on_plugin/v1]
+    premion.com: [wp/v2, oembed/1.0, yoast/v1, wp-abilities/v1, wp-site-health/v1, wp-block-editor/v1,
+                  wordfence/v1, wordfence-login-security/v1, editorskit/v1, simple-history/v1,
+                  redirection/v1, regenerate-thumbnails/v1, gutenberghub-template-library/v1,
+                  gutenberghub-styles/v1, wpe/cache-plugin/v1, wpe_sign_on_plugin/v1]
+  note: >-
+    The version namespace is upstream WordPress's, not TEGNA's. TEGNA publishes no versioning
+    policy of its own and gives no notice when a plugin namespace appears or disappears — the
+    plugin-supplied namespaces above are the volatile part of this surface.
+  discovery: >-
+    Every response carries Link: <https://www.tegna.com/wp-json/>; rel="https://api.w.org/",
+    which points a client back at the machine-readable route index.
+errors:
+  envelope: {code: string, message: string, data: {status: integer}}
+  format: custom-json
+  rfc9457: false
+  content_type: application/json
+  detail: errors/tegna-problem-types.yml
+  note: >-
+    Not RFC 9457. There is no application/problem+json media type and no type/title/detail
+    fields; the HTTP status is duplicated into data.status.
+rate_limiting:
+  published_limits: false
+  response_headers: []
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was observed on any response. Cloudflare
+    sits in front of both hosts and may throttle at the edge, but nothing is advertised to a
+    client. See rate-limits/tegna-rate-limits.yml.
+caching:
+  observed_headers:
+    - {name: cache-control, value: "max-age=600, must-revalidate"}
+    - {name: x-cacheable, value: "SHORT on 200 collections, non200 on errors"}
+    - {name: cf-cache-status, description: Cloudflare edge cache disposition.}
+    - {name: last-modified, description: Present on collection responses.}
+  note: 10-minute edge TTL on successful reads; errors are not cached.
+request_tracing:
+  provider_request_id: false
+  observed:
+    - {name: cf-ray, description: "Cloudflare ray id — the only per-request correlator returned."}
+  note: >-
+    TEGNA returns no application-level request id. cf-ray is infrastructure-supplied and TEGNA
+    publishes no support channel that accepts it, so it is not actionable for a developer.
+agent_posture:
+  robots_txt_blocks_ai_crawlers: true
+  blocked_agents: [GPTBot, ChatGPT-User]
+  hosts: [https://www.tegna.com/robots.txt, https://premion.com/robots.txt]
+  llms_txt_served:
+    www.tegna.com: 200
+    premion.com: 404
+  note: >-
+    Worth recording as a contradiction: www.tegna.com serves an llms.txt inviting LLM indexing
+    while its own robots.txt disallows GPTBot and ChatGPT-User outright. The APIs themselves are
+    not gated by user-agent — every probe above succeeded with a browser UA.

@@ -1,0 +1,118 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/tegna-content-api-openapi.yml and openapi/tegna-premion-content-api-openapi.yml,
+  derived from the provider-served route indexes; relationship fields and _links rels confirmed
+  against live responses on 2026-08-13.
+description: >-
+  Entity-relationship graph for TEGNA's two publicly callable content APIs. The core entities
+  are WordPress's; the custom post types are TEGNA's own and are the most useful part of this
+  model — they are what makes each deployment distinguishable.
+id_convention:
+  type: integer
+  note: >-
+    All entities use an unprefixed auto-increment integer id, unique only within a host. Ids
+    are NOT stable across www.tegna.com and premion.com — post 3771 exists on both and means
+    different things. Any client joining the two surfaces must key on host + type + id.
+entities:
+  - name: Post
+    path: /wp/v2/posts
+    description: Corporate press releases on tegna.com; marketing articles on premion.com.
+    observed_count: {www.tegna.com: 1608}
+    key_fields: [id, date, date_gmt, modified, slug, status, link, title, content, excerpt,
+                 author, featured_media, categories, tags, format, sticky]
+    relationships:
+      - {kind: belongs_to, target: User, via: author}
+      - {kind: has_one, target: Media, via: featured_media}
+      - {kind: has_many, target: Category, via: categories}
+      - {kind: has_many, target: Tag, via: tags}
+      - {kind: has_many, target: Comment, via: "_links.replies"}
+      - {kind: has_many, target: PostRevision, via: "_links.version-history"}
+  - name: Page
+    path: /wp/v2/pages
+    description: >-
+      Static pages, including the /advertise/solutions/* marketing pages that apis.yml records
+      as Documentation.
+    key_fields: [id, slug, status, link, title, content, parent, menu_order, template]
+    relationships:
+      - {kind: belongs_to, target: User, via: author}
+      - {kind: belongs_to, target: Page, via: parent}
+      - {kind: has_one, target: Media, via: featured_media}
+  - name: Media
+    path: /wp/v2/media
+    description: Images, video and document attachments.
+    key_fields: [id, slug, media_type, mime_type, source_url, alt_text, media_details, post]
+    relationships:
+      - {kind: belongs_to, target: Post, via: post}
+      - {kind: belongs_to, target: User, via: author}
+  - name: Category
+    path: /wp/v2/categories
+    description: Hierarchical taxonomy term.
+    key_fields: [id, count, name, slug, parent, taxonomy]
+    relationships:
+      - {kind: belongs_to, target: Category, via: parent}
+      - {kind: has_many, target: Post, via: "_links.wp:post_type"}
+  - name: Tag
+    path: /wp/v2/tags
+    description: Flat taxonomy term.
+    key_fields: [id, count, name, slug, taxonomy]
+    relationships:
+      - {kind: has_many, target: Post, via: "_links.wp:post_type"}
+  - name: User
+    path: /wp/v2/users
+    description: >-
+      Content authors. Publicly listable on both hosts; only users with published content are
+      exposed anonymously.
+    key_fields: [id, name, url, description, link, slug, avatar_urls]
+    relationships:
+      - {kind: has_many, target: Post, via: author}
+  - name: Comment
+    path: /wp/v2/comments
+    key_fields: [id, post, parent, author_name, date, content, status]
+    relationships:
+      - {kind: belongs_to, target: Post, via: post}
+      - {kind: belongs_to, target: Comment, via: parent}
+  - name: Taxonomy
+    path: /wp/v2/taxonomies
+    description: Metadata describing which taxonomies apply to which post types.
+  - name: Type
+    path: /wp/v2/types
+    description: >-
+      Metadata describing every registered post type on the host. This is the route to read
+      first — it is how the custom types below are discovered without guessing.
+custom_post_types:
+  description: >-
+    TEGNA-specific content types, registered on top of WordPress core. These are the
+    idiosyncratic part of the model and confirm the deployment is genuinely TEGNA's rather than
+    a generic template.
+  www.tegna.com:
+    - {path: /wp/v2/leadership-team, status: 200, populated: true,
+       description: "TEGNA executive leadership profiles. Carries an `acf` block (Advanced Custom Fields) alongside the standard post shape."}
+    - {path: /wp/v2/board-of-director, status: 200, populated: false,
+       description: "Board of directors profiles. Route is public and returns an empty array — registered but unpopulated, or filtered from anonymous view."}
+    - {path: /wp/v2/pmb_content, status: 200, populated: false,
+       description: "Print My Blog plugin content type. Empty."}
+    - {path: /wp/v2/icons, status: 401,
+       description: "Icon library. Registered but not anonymously readable."}
+  premion.com:
+    - {path: /wp/v2/news, description: "Premion newsroom entries."}
+    - {path: /wp/v2/news-category, description: "Taxonomy for Premion news."}
+    - {path: /wp/v2/event, description: "Industry events Premion appears at."}
+    - {path: /wp/v2/expert-insight, description: "Premion thought-leadership pieces on OTT/CTV advertising."}
+    - {path: /wp/v2/expert-insights-category, description: "Taxonomy for expert insights."}
+    - {path: /wp/v2/gsm_block, description: "GutenbergHub template-library block."}
+    - {path: /wp/v2/gsm_styles, description: "GutenbergHub style set."}
+divergence:
+  note: >-
+    The two hosts do NOT share a data model. Core WordPress entities are common, but every
+    custom type is unique to its host: tegna.com models corporate governance
+    (leadership-team, board-of-director) while premion.com models advertising marketing
+    (news, event, expert-insight). A client written against one will not transfer to the other
+    beyond posts/pages/media/terms/users.
+absent:
+  note: >-
+    There is NO advertising entity anywhere in this model — no campaign, audience segment,
+    creative, market, inventory or impression. The quarantined scaffold in _scaffold/ invented
+    exactly those entities. Their absence here is the finding: TEGNA's advertising products
+    have no public data model.
+render: null

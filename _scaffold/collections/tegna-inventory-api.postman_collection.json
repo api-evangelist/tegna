@@ -1,0 +1,123 @@
+{
+  "item": [
+    {
+      "id": "5663df72-c89c-44ff-a574-54886afbe407",
+      "name": "Inventory",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "119b30bd-cec1-4138-8737-b0bf70076952",
+          "name": "List OTT Inventory",
+          "request": {
+            "name": "List OTT Inventory",
+            "description": {
+              "content": "Retrieve available OTT/CTV inventory across streaming platforms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Filter by streaming platform."
+                },
+                {
+                  "disabled": false,
+                  "key": "genre",
+                  "value": "<string>",
+                  "description": "Filter by content genre."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "afc17719-e961-4518-b450-30e659e8c1a1",
+              "name": "Available OTT inventory.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "genre",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"inventoryId\": \"string\",\n    \"platform\": \"string\",\n    \"channel\": \"string\",\n    \"genre\": \"string\",\n    \"availableImpressions\": 2447,\n    \"cpm\": 2435.3173309016597\n  },\n  {\n    \"inventoryId\": \"string\",\n    \"platform\": \"string\",\n    \"channel\": \"string\",\n    \"genre\": \"string\",\n    \"availableImpressions\": 7753,\n    \"cpm\": 1639.9160623151954\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.tegna.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "88e84f38-1f8e-4e1e-ac67-c2486d756ce1",
+    "name": "TEGNA AudienceOne Audiences Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The TEGNA AudienceOne API enables advertisers to access TEGNA's first-party data targeting platform for digital advertising campaigns across TEGNA's 64 local television brands in 51 U.S. markets. The platform provides audience segment management, campaign creation, creative management, and performance reporting for display, native, pre-roll video, and programmatic advertising.",
+      "type": "text/plain"
+    }
+  }
+}
