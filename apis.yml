@@ -33,6 +33,16 @@ tags:
   - OTT
   - CTV
   - Local News
+  - content-api
+  - Fortune 500
+tags_raw:
+  - Broadcasting
+  - Media
+  - Television
+  - Digital Advertising
+  - OTT
+  - CTV
+  - Local News
   - Content API
   - Fortune 500
 url: https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml
