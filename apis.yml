@@ -50,62 +50,14 @@ created: '2026-03-24'
 modified: '2026-08-13'
 specificationVersion: '0.23'
 apis:
-- aid: tegna:tegna-content-api
-  name: TEGNA Content API (WordPress REST)
-  description: >-
-    The public, unauthenticated read API behind www.tegna.com — TEGNA's corporate and press site. 264 routes across
-    366 operations serving posts, pages, media, categories, tags, taxonomies, block types, site-health and the
-    WordPress Abilities namespace as JSON, plus oEmbed and AIOSEO metadata. Verified live and callable on 2026-08-13.
-    Reads on public content require no credential; writes require a WordPress Application Password.
-  humanURL: https://www.tegna.com/
-  baseURL: https://www.tegna.com/wp-json
-  tags:
-  - Content
-  - Press
-  - WordPress
-  - Media
-  properties:
-  - type: OpenAPI
-    url: openapi/tegna-content-api-openapi.yml
-  - type: Documentation
-    url: https://developer.wordpress.org/rest-api/
-  - type: Authentication
-    url: authentication/tegna-authentication.yml
-  - type: Conventions
-    url: conventions/tegna-conventions.yml
-  - type: ErrorCatalog
-    url: errors/tegna-problem-types.yml
-  - type: DataModel
-    url: data-model/tegna-data-model.yml
-- aid: tegna:tegna-premion-content-api
-  name: PREMION Content API (WordPress REST)
-  description: >-
-    The public, unauthenticated read API behind premion.com, the marketing site for Premion — TEGNA's OTT/CTV
-    advertising business. 186 routes across 291 operations serving posts, pages, media, categories, taxonomies and
-    block types as JSON, plus oEmbed and Yoast SEO metadata. Verified live and callable on 2026-08-13. This is a
-    content API, not the Premion advertising platform API.
-  humanURL: https://premion.com/
-  baseURL: https://premion.com/wp-json
-  tags:
-  - Content
-  - OTT
-  - WordPress
-  properties:
-  - type: OpenAPI
-    url: openapi/tegna-premion-content-api-openapi.yml
-  - type: Documentation
-    url: https://developer.wordpress.org/rest-api/
-  - type: Authentication
-    url: authentication/tegna-authentication.yml
-  - type: Conventions
-    url: conventions/tegna-conventions.yml
 - aid: tegna:tegna-premion-platform-api
   name: Premion Advertising Platform API (gated)
   description: >-
-    A live but undocumented and token-gated API behind Premion's OTT/CTV advertising platform. Probed 2026-08-13:
-    the host root returns 200 {"message":"App is running"}, /health returns 200, and every path under /api returns
-    401 {"message":"Access Denied: No Token Provided"}. No OpenAPI, Swagger, GraphQL, docs or discovery document is
-    served at any probed location. Recorded because the surface demonstrably exists; no specification is claimed.
+    A live but undocumented and token-gated API behind Premion's OTT/CTV advertising platform. Probed
+    2026-08-13: the host root returns 200 {"message":"App is running"}, /health returns 200, and every
+    path under /api returns 401 {"message":"Access Denied: No Token Provided"}. No OpenAPI, Swagger, GraphQL,
+    docs or discovery document is served at any probed location. Recorded because the surface demonstrably
+    exists; no specification is claimed.
   humanURL: https://premion.com/
   baseURL: https://api.premion.com/api
   tags:
@@ -117,6 +69,126 @@ apis:
     url: https://premion.com/
   - type: Support
     url: https://tegnadigital.atlassian.net/servicedesk/customer/portal/17
+- aid: tegna:tegna-aioseo-v1-api
+  name: TEGNA Aioseo/v1 API
+  description: WordPress REST namespace `aioseo/v1` (137 operations).
+  humanURL: https://www.tegna.com/
+  baseURL: https://www.tegna.com/wp-json
+  tags:
+  - aioseo/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-aioseo-v1-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
+  - type: Conventions
+    url: conventions/tegna-conventions.yml
+  - type: ErrorCatalog
+    url: errors/tegna-problem-types.yml
+  - type: DataModel
+    url: data-model/tegna-data-model.yml
+- aid: tegna:tegna-contact-form-7-v1-api
+  name: TEGNA Contact Form 7/v1 API
+  description: WordPress REST namespace `contact-form-7/v1` (9 operations).
+  humanURL: https://www.tegna.com/
+  baseURL: https://www.tegna.com/wp-json
+  tags:
+  - contact-form-7/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-contact-form-7-v1-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
+  - type: Conventions
+    url: conventions/tegna-conventions.yml
+  - type: ErrorCatalog
+    url: errors/tegna-problem-types.yml
+  - type: DataModel
+    url: data-model/tegna-data-model.yml
+- aid: tegna:tegna-oembed-1-0-api
+  name: TEGNA Oembed/1.0 API
+  description: WordPress REST namespace `oembed/1.0` (3 operations).
+  humanURL: https://www.tegna.com/
+  baseURL: https://www.tegna.com/wp-json
+  tags:
+  - oembed/1.0
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-oembed-1-0-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
+  - type: Conventions
+    url: conventions/tegna-conventions.yml
+  - type: ErrorCatalog
+    url: errors/tegna-problem-types.yml
+  - type: DataModel
+    url: data-model/tegna-data-model.yml
+- aid: tegna:tegna-wp-abilities-v1-api
+  name: TEGNA Wp Abilities/v1 API
+  description: WordPress REST namespace `wp-abilities/v1` (8 operations).
+  humanURL: https://www.tegna.com/
+  baseURL: https://www.tegna.com/wp-json
+  tags:
+  - wp-abilities/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-wp-abilities-v1-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
+  - type: Conventions
+    url: conventions/tegna-conventions.yml
+  - type: ErrorCatalog
+    url: errors/tegna-problem-types.yml
+  - type: DataModel
+    url: data-model/tegna-data-model.yml
+- aid: tegna:tegna-wp-v2-api
+  name: TEGNA Wp/v2 API
+  description: WordPress REST namespace `wp/v2` (209 operations).
+  humanURL: https://www.tegna.com/
+  baseURL: https://www.tegna.com/wp-json
+  tags:
+  - wp/v2
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-wp-v2-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
+  - type: Conventions
+    url: conventions/tegna-conventions.yml
+  - type: ErrorCatalog
+    url: errors/tegna-problem-types.yml
+  - type: DataModel
+    url: data-model/tegna-data-model.yml
+- aid: tegna:tegna-yoast-v1-api
+  name: TEGNA Yoast/v1 API
+  description: WordPress REST namespace `yoast/v1` (51 operations).
+  humanURL: https://www.tegna.com/
+  baseURL: https://www.tegna.com/wp-json
+  tags:
+  - yoast/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/tegna-yoast-v1-api-openapi.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
+  - type: Conventions
+    url: conventions/tegna-conventions.yml
+  - type: ErrorCatalog
+    url: errors/tegna-problem-types.yml
+  - type: DataModel
+    url: data-model/tegna-data-model.yml
 common:
   - type: LLMsTxt
     url: llms/tegna-llms.txt
