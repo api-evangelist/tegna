@@ -11,6 +11,18 @@ description: >-
   serves are the WordPress REST content APIs behind its corporate site and premion.com; the Premion advertising
   platform API at api.premion.com is live but token-gated and undocumented.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: request
