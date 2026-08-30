@@ -1,0 +1,549 @@
+openapi: 3.2.0
+info:
+  title: TEGNA Content API (WordPress REST) Contact Form 7/v1 API
+  description: 'The public, unauthenticated read API behind www.tegna.com — TEGNA''s corporate and press site. Serves posts, pages, media, categories, tags, taxonomies, block types and site-health data as JSON, plus oEmbed and AIOSEO metadata namespaces. This is the only machine-readable, publicly callable API surface TEGNA serves: TEGNA publishes no developer portal and no advertising API. Reads require no credential; writes require a WordPress Application Password.'
+  version: '2.0'
+  x-provenance:
+    method: derived
+    derived_by: API Evangelist enrichment pipeline
+    derived_from: https://www.tegna.com/wp-json/
+    derived_on: '2026-08-13'
+    note: 'DERIVED, not published by the provider. TEGNA does not publish an OpenAPI document. This specification is a faithful mechanical transform of the WordPress REST route-discovery index the provider serves at the URL above: every path, method, parameter name, type, enum, default and required flag is copied from that index. No operation, parameter or host is invented. The host was verified live and the routes verified callable on 2026-08-13.'
+servers:
+- url: https://www.tegna.com/wp-json
+  description: Live WordPress REST API (verified reachable).
+tags:
+- name: contact-form-7/v1
+  description: WordPress REST namespace `contact-form-7/v1` (9 operations).
+paths:
+  /contact-form-7/v1:
+    get:
+      operationId: getContactForm7V1
+      summary: GET /contact-form-7/v1
+      description: '`GET /contact-form-7/v1` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      parameters:
+      - name: context
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: view
+      - name: namespace
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /contact-form-7/v1/contact-forms:
+    get:
+      operationId: getContactForm7V1ContactForms
+      summary: GET /contact-form-7/v1/contact-forms
+      description: '`GET /contact-form-7/v1/contact-forms` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createContactForm7V1ContactForms
+      summary: POST /contact-form-7/v1/contact-forms
+      description: '`POST /contact-form-7/v1/contact-forms` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - applicationPassword: []
+  /contact-form-7/v1/contact-forms/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Path segment matched by the WordPress route pattern `\d+`.
+    get:
+      operationId: getContactForm7V1ContactFormsById
+      summary: GET /contact-form-7/v1/contact-forms/{id}
+      description: '`GET /contact-form-7/v1/contact-forms/{id}` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createContactForm7V1ContactFormsById
+      summary: POST /contact-form-7/v1/contact-forms/{id}
+      description: '`POST /contact-form-7/v1/contact-forms/{id}` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - applicationPassword: []
+    delete:
+      operationId: deleteContactForm7V1ContactFormsById
+      summary: DELETE /contact-form-7/v1/contact-forms/{id}
+      description: '`DELETE /contact-form-7/v1/contact-forms/{id}` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - applicationPassword: []
+  /contact-form-7/v1/contact-forms/{id}/feedback:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Path segment matched by the WordPress route pattern `\d+`.
+    post:
+      operationId: createContactForm7V1ContactFormsByIdFeedback
+      summary: POST /contact-form-7/v1/contact-forms/{id}/feedback
+      description: '`POST /contact-form-7/v1/contact-forms/{id}/feedback` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - applicationPassword: []
+  /contact-form-7/v1/contact-forms/{id}/feedback/schema:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Path segment matched by the WordPress route pattern `\d+`.
+    get:
+      operationId: getContactForm7V1ContactFormsByIdFeedbackSchema
+      summary: GET /contact-form-7/v1/contact-forms/{id}/feedback/schema
+      description: '`GET /contact-form-7/v1/contact-forms/{id}/feedback/schema` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /contact-form-7/v1/contact-forms/{id}/refill:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Path segment matched by the WordPress route pattern `\d+`.
+    get:
+      operationId: getContactForm7V1ContactFormsByIdRefill
+      summary: GET /contact-form-7/v1/contact-forms/{id}/refill
+      description: '`GET /contact-form-7/v1/contact-forms/{id}/refill` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - contact-form-7/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: WordPress REST error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. `rest_no_route`.
+        message:
+          type: string
+          description: Human-readable message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages.
+            details:
+              type: object
+              description: Per-parameter error codes.
+      required:
+      - code
+      - message
+      - data
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords (HTTP Basic). The live index advertises the authorization endpoint at https://www.tegna.com/wp-admin/authorize-application.php. Reads on public content require no credential.

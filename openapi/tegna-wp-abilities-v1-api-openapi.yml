@@ -1,0 +1,625 @@
+openapi: 3.2.0
+info:
+  title: Tegna Wp Abilities/v1 API
+  version: '2.0'
+  x-refined-note:
+  - x-provenance differs across the merged source definitions and was not carried
+  description: 'Operations tagged wp-abilities/v1 across 2 of this provider''s published API definitions: tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://www.tegna.com/wp-json
+  description: Live WordPress REST API (verified reachable).
+- url: https://premion.com/wp-json
+  description: Live WordPress REST API (verified reachable).
+tags:
+- name: wp-abilities/v1
+  description: WordPress REST namespace `wp-abilities/v1` (8 operations).
+paths:
+  /wp-abilities/v1:
+    get:
+      operationId: getWpAbilitiesV1
+      summary: GET /wp-abilities/v1
+      description: '`GET /wp-abilities/v1` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      parameters:
+      - name: context
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: view
+      - name: namespace
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: wp-abilities/v1
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+  /wp-abilities/v1/abilities:
+    get:
+      operationId: getWpAbilitiesV1Abilities
+      summary: GET /wp-abilities/v1/abilities
+      description: '`GET /wp-abilities/v1/abilities` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      parameters:
+      - name: category
+        in: query
+        required: false
+        description: Limit results to abilities in specific ability category.
+        schema:
+          type: string
+      - name: context
+        in: query
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      - name: page
+        in: query
+        required: false
+        description: Current page of the collection.
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: per_page
+        in: query
+        required: false
+        description: Maximum number of items to be returned in result set.
+        schema:
+          type: integer
+          default: 50
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+  /wp-abilities/v1/abilities/{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Path segment matched by the WordPress route pattern `[a-zA-Z0-9\-\/]+`.
+    get:
+      operationId: getWpAbilitiesV1AbilitiesByName
+      summary: GET /wp-abilities/v1/abilities/{name}
+      description: '`GET /wp-abilities/v1/abilities/{name}` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      parameters:
+      - name: name
+        in: query
+        required: false
+        description: Unique identifier for the ability.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+  /wp-abilities/v1/abilities/{name}/run:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Path segment matched by the WordPress route pattern `[a-zA-Z0-9\-\/]+?`.
+    get:
+      operationId: getWpAbilitiesV1AbilitiesByNameRun
+      summary: GET /wp-abilities/v1/abilities/{name}/run
+      description: '`GET /wp-abilities/v1/abilities/{name}/run` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      parameters:
+      - name: input
+        in: query
+        required: false
+        description: Input parameters for the ability execution.
+        schema:
+          type: integer
+      - name: name
+        in: query
+        required: false
+        description: Unique identifier for the ability.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createWpAbilitiesV1AbilitiesByNameRun
+      summary: POST /wp-abilities/v1/abilities/{name}/run
+      description: '`POST /wp-abilities/v1/abilities/{name}/run` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Unique identifier for the ability.
+                input:
+                  type: integer
+                  description: Input parameters for the ability execution.
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - applicationPassword: []
+    delete:
+      operationId: deleteWpAbilitiesV1AbilitiesByNameRun
+      summary: DELETE /wp-abilities/v1/abilities/{name}/run
+      description: '`DELETE /wp-abilities/v1/abilities/{name}/run` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Unique identifier for the ability.
+                input:
+                  type: integer
+                  description: Input parameters for the ability execution.
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - applicationPassword: []
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+  /wp-abilities/v1/categories:
+    get:
+      operationId: getWpAbilitiesV1Categories
+      summary: GET /wp-abilities/v1/categories
+      description: '`GET /wp-abilities/v1/categories` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      parameters:
+      - name: context
+        in: query
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      - name: page
+        in: query
+        required: false
+        description: Current page of the collection.
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: per_page
+        in: query
+        required: false
+        description: Maximum number of items to be returned in result set.
+        schema:
+          type: integer
+          default: 50
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+  /wp-abilities/v1/categories/{slug}*):
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Path segment matched by the WordPress route pattern `[a-z0-9]+(?:-[a-z0-9]+`.
+    get:
+      operationId: getWpAbilitiesV1CategoriesBySlug}*
+      summary: GET /wp-abilities/v1/categories/{slug}*)
+      description: '`GET /wp-abilities/v1/categories/{slug}*)` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - wp-abilities/v1
+      parameters:
+      - name: slug
+        in: query
+        required: false
+        description: Unique identifier for the ability category.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+components:
+  schemas:
+    Error:
+      type: object
+      description: WordPress REST error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. `rest_no_route`.
+        message:
+          type: string
+          description: Human-readable message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages.
+            details:
+              type: object
+              description: Per-parameter error codes.
+      required:
+      - code
+      - message
+      - data
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords (HTTP Basic). The live index advertises the authorization endpoint at https://www.tegna.com/wp-admin/authorize-application.php. Reads on public content require no credential.
+x-refined-from:
+- tegna-content-api-openapi.yml
+- tegna-premion-content-api-openapi.yml

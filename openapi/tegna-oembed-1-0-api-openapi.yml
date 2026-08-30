@@ -1,0 +1,286 @@
+openapi: 3.2.0
+info:
+  title: Tegna Oembed/1.0 API
+  version: '2.0'
+  x-refined-note:
+  - x-provenance differs across the merged source definitions and was not carried
+  description: 'Operations tagged oembed/1.0 across 2 of this provider''s published API definitions: tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://www.tegna.com/wp-json
+  description: Live WordPress REST API (verified reachable).
+- url: https://premion.com/wp-json
+  description: Live WordPress REST API (verified reachable).
+tags:
+- name: oembed/1.0
+  description: WordPress REST namespace `oembed/1.0` (3 operations).
+paths:
+  /oembed/1.0:
+    get:
+      operationId: getOembed10
+      summary: GET /oembed/1.0
+      description: '`GET /oembed/1.0` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - oembed/1.0
+      parameters:
+      - name: context
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: view
+      - name: namespace
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: oembed/1.0
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+  /oembed/1.0/embed:
+    get:
+      operationId: getOembed10Embed
+      summary: GET /oembed/1.0/embed
+      description: '`GET /oembed/1.0/embed` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - oembed/1.0
+      parameters:
+      - name: format
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: json
+      - name: maxwidth
+        in: query
+        required: false
+        description: ''
+        schema:
+          type: string
+          default: 600
+      - name: url
+        in: query
+        required: true
+        description: The URL of the resource for which to fetch oEmbed data.
+        schema:
+          type: string
+          format: uri
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+  /oembed/1.0/proxy:
+    get:
+      operationId: getOembed10Proxy
+      summary: GET /oembed/1.0/proxy
+      description: '`GET /oembed/1.0/proxy` as advertised by the live WordPress REST route index at https://www.tegna.com/wp-json/. Parameters below are copied verbatim from that index.'
+      tags:
+      - oembed/1.0
+      parameters:
+      - name: discover
+        in: query
+        required: false
+        description: Whether to perform an oEmbed discovery request for unsanctioned providers.
+        schema:
+          type: boolean
+          default: true
+      - name: format
+        in: query
+        required: false
+        description: The oEmbed format to use.
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      - name: maxheight
+        in: query
+        required: false
+        description: The maximum height of the embed frame in pixels.
+        schema:
+          type: integer
+      - name: maxwidth
+        in: query
+        required: false
+        description: The maximum width of the embed frame in pixels.
+        schema:
+          type: integer
+          default: 600
+      - name: url
+        in: query
+        required: true
+        description: The URL of the resource for which to fetch oEmbed data.
+        schema:
+          type: string
+          format: uri
+      responses:
+        '200':
+          description: Success.
+          headers:
+            X-WP-Total:
+              description: Total records matching the query (collection routes).
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total pages available (collection routes).
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (`rel="next"` / `rel="prev"`).
+              schema:
+                type: string
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter — `rest_invalid_param`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Not authenticated — `rest_not_logged_in`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden — `rest_forbidden` / `rest_cannot_*`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource — `rest_no_route` / `rest_post_invalid_id`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    servers:
+    - url: https://www.tegna.com/wp-json
+      description: Live WordPress REST API (verified reachable).
+components:
+  schemas:
+    Error:
+      type: object
+      description: WordPress REST error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. `rest_no_route`.
+        message:
+          type: string
+          description: Human-readable message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages.
+            details:
+              type: object
+              description: Per-parameter error codes.
+      required:
+      - code
+      - message
+      - data
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords (HTTP Basic). The live index advertises the authorization endpoint at https://www.tegna.com/wp-admin/authorize-application.php. Reads on public content require no credential.
+x-refined-from:
+- tegna-content-api-openapi.yml
+- tegna-premion-content-api-openapi.yml
