@@ -1,7 +1,9 @@
 ---
 title: 'Ask ChatGPT: Why Should I Advertise with TEGNA?'
 url: https://www.tegna.com/advertise/ask-chatgpt-why-should-i-advertise-with-tegna/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"TEGNA" press release artificial intelligence'
 position: 5
 source: serpapi-google

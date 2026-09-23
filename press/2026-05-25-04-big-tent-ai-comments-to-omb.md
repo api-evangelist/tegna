@@ -1,7 +1,9 @@
 ---
 title: Big Tent AI Comments to OMB
 url: https://publicknowledge.org/policy/big-tent-ai-comments-to-omb/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"TEGNA" press release artificial intelligence'
 position: 4
 source: serpapi-google

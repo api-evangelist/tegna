@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: PREMION Content API (WordPress REST) Yoast/v1 API
-  description: 'The public, unauthenticated read API behind premion.com — the marketing site for Premion, TEGNA''s OTT/CTV advertising business. Serves posts, pages, media, categories, taxonomies and block types as JSON, plus oEmbed and Yoast SEO metadata namespaces. It is NOT the Premion advertising platform API: that surface lives at https://api.premion.com/api, is token-gated (401 ''Access Denied: No Token Provided'') and publishes no specification. Reads here require no credential; writes require a WordPress Application Password.'
+  description: The public, unauthenticated read API behind premion.com — the marketing site for Premion, TEGNA's OTT/CTV advertising business.
   version: '2.0'
   x-provenance:
     method: derived

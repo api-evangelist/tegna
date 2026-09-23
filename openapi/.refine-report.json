@@ -1,26 +1,35 @@
 {
   "provider": "tegna",
   "sources": [
-    "tegna-audiences-api-openapi.yml",
-    "tegna-campaigns-api-openapi.yml",
-    "tegna-creatives-api-openapi.yml",
-    "tegna-inventory-api-openapi.yml",
-    "tegna-markets-api-openapi.yml",
-    "tegna-ott-campaigns-api-openapi.yml",
-    "tegna-reporting-api-openapi.yml"
+    "_original/tegna-content-api-openapi.yml",
+    "_original/tegna-premion-content-api-openapi.yml"
   ],
   "outputs": [
-    "tegna-audiences-api-openapi.yml",
-    "tegna-campaigns-api-openapi.yml",
-    "tegna-creatives-api-openapi.yml",
-    "tegna-inventory-api-openapi.yml",
-    "tegna-markets-api-openapi.yml",
-    "tegna-ott-campaigns-api-openapi.yml",
-    "tegna-reporting-api-openapi.yml"
+    "tegna-aioseo-v1-api-openapi.yml",
+    "tegna-contact-form-7-v1-api-openapi.yml",
+    "tegna-oembed-1-0-api-openapi.yml",
+    "tegna-wp-abilities-v1-api-openapi.yml",
+    "tegna-wp-v2-api-openapi.yml",
+    "tegna-yoast-v1-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tegna-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tegna-premion-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'oembed/1.0' spans 2 source specs (tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml): per-path servers applied",
+    "tag 'wp-abilities/v1' spans 2 source specs (tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml): per-path servers applied",
+    "tag 'wp/v2' spans 2 source specs (tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tegna-aioseo-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tegna-contact-form-7-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tegna-oembed-1-0-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tegna-wp-abilities-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tegna-wp-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tegna-yoast-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,7 +1,9 @@
 ---
 title: Nexstar Media Group, Inc. Enters into Definitive Agreement ...
 url: https://www.nexstar.tv/nexstar-media-group-inc-enters-into-definitive-agreement-to-acquire-tegna-inc-for-6-2-billion-in-accretive-transaction/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"TEGNA" press release artificial intelligence'
 position: 1
 source: serpapi-google

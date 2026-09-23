@@ -1,7 +1,9 @@
 ---
 title: How Local Stations Are Leveraging AI To Increase ...
 url: https://tvnewscheck.com/ai/article/how-local-stations-are-leveraging-ai-to-increase-revenue-and-improve-efficiencies/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"TEGNA" press release artificial intelligence'
 position: 2
 source: serpapi-google
