@@ -1,35 +1,21 @@
 {
   "provider": "tegna",
   "sources": [
-    "_original/tegna-content-api-openapi.yml",
-    "_original/tegna-premion-content-api-openapi.yml"
+    "tegna-yoast-v1-api-openapi.yml"
   ],
   "outputs": [
-    "tegna-aioseo-v1-api-openapi.yml",
-    "tegna-contact-form-7-v1-api-openapi.yml",
-    "tegna-oembed-1-0-api-openapi.yml",
-    "tegna-wp-abilities-v1-api-openapi.yml",
-    "tegna-wp-v2-api-openapi.yml",
     "tegna-yoast-v1-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
-  "notes": [
-    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "tegna-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "tegna-premion-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "tag 'oembed/1.0' spans 2 source specs (tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml): per-path servers applied",
-    "tag 'wp-abilities/v1' spans 2 source specs (tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml): per-path servers applied",
-    "tag 'wp/v2' spans 2 source specs (tegna-content-api-openapi.yml, tegna-premion-content-api-openapi.yml): per-path servers applied",
-    "apis.yml register: already-registered"
+  "warnings": [
+    "tegna-yoast-v1-api-openapi.yml: previously refined output kept for 51 operation(s) no archived document covers (e.g. /yoast/v1 get, /yoast/v1/action_tracking post, /yoast/v1/alerts/dismiss post); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
   ],
-  "skipped": [
-    "tegna-aioseo-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tegna-contact-form-7-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tegna-oembed-1-0-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tegna-wp-abilities-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tegna-wp-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tegna-yoast-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/"
-  ]
+  "notes": [
+    "tegna-content-api-openapi.yml: WordPress site /wp-json spec, not split (roadmap#484)",
+    "tegna-premion-content-api-openapi.yml: WordPress site /wp-json spec, not split (roadmap#484)",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apis.yml register: written (+1 apis, 3 total)"
+  ],
+  "skipped": []
 }
