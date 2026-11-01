@@ -1,4 +1,4 @@
-# TEGNA (tegna)
+# TEGNA
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,116 +64,141 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TEGNA Inc. is an American broadcast, digital media, and marketing services company headquartered in Tysons, Virginia, operating as a subsidiary of Nexstar Media Group following FCC approval of the $6.2 billion acquisition in March 2026. TEGNA operates 64 full-power broadcast television stations across 51 U.S. markets, reaching approximately 39 percent of all television households. Its digital marketing portfolio includes AudienceOne first-party data targeting, OTT/CTV advertising through the Premion platform, and the TEGNA Marketing Solutions full-service agency.
+TEGNA Inc. is an American broadcast, digital media, and marketing services company headquartered in Tysons, Virginia, operating as a subsidiary of Nexstar Media Group following FCC approval of the $6.2 billion acquisition in March 2026. TEGNA operates 64 full-power broadcast television stations across 51 U.S. markets, reaching approximately 39 percent of all television households. Its digital marketing portfolio includes AudienceOne first-party data targeting, OTT/CTV advertising through the Premion platform, and the TEGNA Marketing Solutions full-service agency. TEGNA runs no public developer program and publishes no developer portal: those advertising products are transacted through insertion orders, programmatic deal IDs and agency contracts. The only publicly callable, machine-readable API surfaces TEGNA serves are the WordPress REST content APIs behind its corporate site and premion.com; the Premion advertising platform API at api.premion.com is live but token-gated and undocumented.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml)
+**Areas:** Broadcasting · Media · Television · Digital Advertising · OTT · CTV · Local News · content-api · Fortune 500
 
-## What TEGNA actually publishes
+## TEGNA on APIs.io
 
-**TEGNA runs no public developer program.** There is no developer portal, no API documentation, no SDK, no public GitHub organization, no MCP server and no A2A agent card. `developer.tegna.com`, `docs.tegna.com` and `developers.tegna.com` do not resolve. AudienceOne and Premion are transacted through insertion orders, programmatic deal IDs and agency contracts — see [`plans/tegna-plans-pricing.yml`](plans/tegna-plans-pricing.yml).
+Everything profiled for TEGNA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tegna/](https://apis.io/providers/tegna/)** — or go straight to one of the APIs or properties below.
 
-What TEGNA *does* serve, verified live on 2026-08-13, is a pair of public WordPress REST content APIs and one token-gated advertising backend.
+### APIs (3)
 
-## Scope
+- [Premion Advertising Platform API (gated)](https://apis.io/apis/tegna/tegna-premion-platform-api/) — A live but undocumented and token-gated API behind Premion's OTT/CTV advertising platform. Probed 2026-08-13: the host root returns 200 {"message":"App is…
+- [TEGNA Website (WordPress REST)](https://apis.io/apis/tegna/tegna-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the TEGNA website at www.tegna.com: the route index of the site's content management system, catalogued as one…
+- [TEGNA Website (WordPress REST)](https://apis.io/apis/tegna/premion-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the TEGNA website at premion.com: the route index of the site's content management system, catalogued as one site…
 
-- **Type:** Index
+### Published properties
 
-## Tags
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- Broadcasting
-- Media
-- Television
-- Digital Advertising
-- OTT
-- CTV
-- Local News
-- Content API
-- Fortune 500
+#### MCP servers (1)
 
-## Timestamps
+Model Context Protocol servers that expose the API to agents.
 
-- **Created:** 2026-03-24
-- **Modified:** 2026-08-13
+- [tegna-mcp.yml](https://apis.io/servers/tegna/tegna-mcp-yml/)
 
-## APIs
+#### Agentic access (1)
 
-### TEGNA Content API (WordPress REST)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The public, unauthenticated read API behind www.tegna.com — TEGNA's corporate and press site. 264 routes across 366 operations serving posts, pages, media, categories, tags, taxonomies, block types, site-health and the WordPress Abilities namespace as JSON, plus oEmbed and AIOSEO metadata. Reads on public content require no credential; writes require a WordPress Application Password.
+- [Tegna Agentic Access](https://apis.io/agentic-access/tegna/tegna-agentic-access/)
 
-- **Human URL:** [https://www.tegna.com/](https://www.tegna.com/)
-- **Base URL:** `https://www.tegna.com/wp-json`
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [OpenAPI](openapi/tegna-content-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html) *(derived by API Evangelist from the provider-served route index; TEGNA publishes no OpenAPI)*
-- [Documentation](https://developer.wordpress.org/rest-api/)
-- [Authentication](authentication/tegna-authentication.yml)
-- [Conventions](conventions/tegna-conventions.yml)
-- [ErrorCatalog](errors/tegna-problem-types.yml)
-- [DataModel](data-model/tegna-data-model.yml)
+- [Tegna Vocabulary](https://apis.io/vocabularies/tegna/tegna-vocabulary/)
 
-### PREMION Content API (WordPress REST)
+#### Collections (2)
 
-The public, unauthenticated read API behind premion.com, the marketing site for Premion — TEGNA's OTT/CTV advertising business. 186 routes across 291 operations. This is a content API, not the Premion advertising platform API.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://premion.com/](https://premion.com/)
-- **Base URL:** `https://premion.com/wp-json`
+- [Moved to /providers/tegna/](https://apis.io/collections/tegna/open-tegna-content-api/)
+- [PREMION Content API (WordPress REST)](https://apis.io/collections/tegna/open-tegna-premion-content-api/)
 
-#### Properties
+#### Governance rules (2)
 
-- [OpenAPI](openapi/tegna-premion-content-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html) *(derived, as above)*
-- [Documentation](https://developer.wordpress.org/rest-api/)
-- [Authentication](authentication/tegna-authentication.yml)
-- [Conventions](conventions/tegna-conventions.yml)
+Spectral rulesets for the provider's contracts.
 
-### Premion Advertising Platform API (gated)
+- [TEGNA — jsonschema rules](https://apis.io/rules/tegna/tegna-jsonschema-spectral-rules/)
+- [TEGNA API Rules](https://apis.io/rules/tegna/tegna-rules/)
 
-A live but undocumented and token-gated API behind Premion's OTT/CTV advertising platform. Probed 2026-08-13: the host root returns `200 {"message":"App is running"}`, `/health` returns 200, and every path under `/api` returns `401 {"message":"Access Denied: No Token Provided"}`. No OpenAPI, Swagger, GraphQL, docs or discovery document is served at any probed location. Recorded because the surface demonstrably exists; no specification is claimed.
+#### Security (2)
 
-- **Human URL:** [https://premion.com/](https://premion.com/)
-- **Base URL:** `https://api.premion.com/api`
+Authentication, trust centre, and vulnerability disclosure.
 
-## Not published by TEGNA
+- [Tegna Authentication](https://apis.io/security/tegna/tegna-authentication/)
+- [Tegna Domain Security](https://apis.io/security/tegna/tegna-domain-security/)
 
-Recorded absences. Each was probed, and each empty result is a measurement rather than a gap in the search.
+#### Plans and pricing (1)
 
-| Surface | Result |
-|---|---|
-| Developer portal / API docs | None. `developer.tegna.com`, `docs.tegna.com`, `developers.tegna.com` all NXDOMAIN |
-| OpenAPI / Swagger / GraphQL | None served. `api.premion.com/openapi.json`, `/swagger.json`, `/api-docs`, `/docs`, `/redoc` all 404 |
-| `/.well-known/*` | 36 probes across 4 hosts, 36 × 404. No `WellKnown` or `SecurityTxt` pointer emitted |
-| A2A agent card | `agent-card.json` and `agent.json` 404 on every host. No `a2a/` artifact written |
-| MCP server | None hosted, none packaged. `mcp/tegna-mcp.yml` records `deployment.mode: none` and wires **no** `MCPServer` pointer |
-| SDKs / packages | Zero across npm, PyPI, RubyGems, crates.io, NuGet, Maven, pkg.go.dev. No public GitHub org |
-| Status page | None. `tegna.statuspage.io` returns 200 but so does a random control subdomain — a wildcard soft-200, not a status page |
-| Rate limits | No `X-RateLimit-*`, `RateLimit-*` or `Retry-After` header on any response |
-| Idempotency | Not supported; no idempotency key accepted |
-| Compliance / trust center | No SOC 2 / ISO 27001 / PCI / HIPAA / FedRAMP claim. `trust.tegna.com` NXDOMAIN |
-| Events / webhooks / AsyncAPI | No event surface. Not applicable rather than failed |
+Published plans, tiers and prices.
 
-## Quarantined artifacts
+- [Tegna Plans Pricing](https://apis.io/plans/tegna/tegna-plans-pricing/)
 
-Nine OpenAPI documents and everything derived from them were moved to [`_scaffold/`](_scaffold/README.md) in the 2026-08-13 pass. They declare `api.tegna.com`, which is **NXDOMAIN**, and a Premion `/v1` base path that returns 404. They were written by API Evangelist, not by TEGNA, and carried no provenance marker. See [`_scaffold/README.md`](_scaffold/README.md) for the full evidence table.
+#### Rate limits (1)
 
-## Common Properties
+Published request limits.
+
+- [Tegna Rate Limits](https://apis.io/rate-limits/tegna/tegna-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Tegna Finops](https://apis.io/finops/tegna/tegna-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.tegna.com)
-- [Website](https://www.nexstar.tv/)
-- [Advertising](https://www.tegna.com/advertise/)
 - [Documentation](https://www.tegna.com/advertise/solutions/digital/)
-- [Documentation](https://www.tegna.com/advertise/solutions/broadcast/)
-- [Documentation](https://www.tegna.com/advertise/solutions/streaming/)
-- [Website](https://premion.com/)
 - [Support](https://www.tegna.com/contact/)
-- [HelpCenter](https://tegnadigital.atlassian.net/servicedesk/customer/portal/17)
-- [TermsOfService](https://www.tegna.com/terms-of-service/)
-- [PrivacyPolicy](https://www.tegna.com/privacy-policy/)
-- [LinkedIn](https://www.linkedin.com/company/tegna)
 - [Blog](https://www.tegna.com/press/)
-- [LLMsTxt](llms/tegna-llms.txt) — verbatim from `https://www.tegna.com/llms.txt` (200, `text/plain`)
+- [Terms of service](https://www.tegna.com/terms-of-service/)
+- [Privacy policy](https://www.tegna.com/privacy-policy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 26.0** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 1.7 |
+| Contract governance | 31.8 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 26.3 |
+
+**Agent readiness 10.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tegna/](https://apis.io/providers/tegna/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TEGNA: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tegna/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
