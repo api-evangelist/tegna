@@ -1,0 +1,234 @@
+aid: tegna
+name: TEGNA
+description: >-
+  TEGNA Inc. is an American broadcast, digital media, and marketing services company headquartered in Tysons, Virginia,
+  operating as a subsidiary of Nexstar Media Group following FCC approval of the $6.2 billion acquisition in March 2026.
+  TEGNA operates 64 full-power broadcast television stations across 51 U.S. markets, reaching approximately 39 percent
+  of all television households. Its digital marketing portfolio includes AudienceOne first-party data targeting, OTT/CTV
+  advertising through the Premion platform, and the TEGNA Marketing Solutions full-service agency. TEGNA runs no public
+  developer program and publishes no developer portal: those advertising products are transacted through insertion
+  orders, programmatic deal IDs and agency contracts. The only publicly callable, machine-readable API surfaces TEGNA
+  serves are the WordPress REST content APIs behind its corporate site and premion.com; the Premion advertising
+  platform API at api.premion.com is live but token-gated and undocumented.
+type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
+accessModel:
+  pricing: enterprise
+  onboarding: request
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Contact sales
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-08-13'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tegna.png
+tags:
+  - Broadcasting
+  - Media
+  - Television
+  - Digital Advertising
+  - OTT
+  - CTV
+  - Local News
+  - content-api
+  - Fortune 500
+tags_raw:
+  - Broadcasting
+  - Media
+  - Television
+  - Digital Advertising
+  - OTT
+  - CTV
+  - Local News
+  - Content API
+  - Fortune 500
+url: https://raw.githubusercontent.com/api-evangelist/tegna/refs/heads/main/apis.yml
+created: '2026-03-24'
+modified: '2026-08-13'
+specificationVersion: '0.23'
+apis:
+- aid: tegna:tegna-premion-platform-api
+  name: Premion Advertising Platform API (gated)
+  description: >-
+    A live but undocumented and token-gated API behind Premion's OTT/CTV advertising platform. Probed
+    2026-08-13: the host root returns 200 {"message":"App is running"}, /health returns 200, and every
+    path under /api returns 401 {"message":"Access Denied: No Token Provided"}. No OpenAPI, Swagger, GraphQL,
+    docs or discovery document is served at any probed location. Recorded because the surface demonstrably
+    exists; no specification is claimed.
+  humanURL: https://premion.com/
+  baseURL: https://api.premion.com/api
+  tags:
+  - OTT Advertising
+  - CTV
+  - Gated
+  properties:
+  - type: Documentation
+    url: https://premion.com/
+  - type: Support
+    url: https://tegnadigital.atlassian.net/servicedesk/customer/portal/17
+- aid: tegna:tegna-com-website-wordpress-rest
+  name: TEGNA Website (WordPress REST)
+  description: >-
+    The public WordPress REST API (wp-json) of the TEGNA website at www.tegna.com: the route index of
+    the site's content management system, catalogued as one site surface rather than as separate APIs.
+  baseURL: https://www.tegna.com/wp-json
+  tags:
+  - WordPress
+  x-surface: platform-generated
+  properties:
+  - type: Documentation
+    url: https://www.tegna.com/wp-json
+  x-platform: wordpress
+  x-platform-surface: rest
+- aid: tegna:premion-com-website-wordpress-rest
+  name: TEGNA Website (WordPress REST)
+  description: >-
+    The public WordPress REST API (wp-json) of the TEGNA website at premion.com: the route index of the
+    site's content management system, catalogued as one site surface rather than as separate APIs.
+  baseURL: https://premion.com/wp-json
+  tags:
+  - WordPress
+  x-surface: platform-generated
+  x-platform: wordpress
+  x-platform-surface: rest
+  properties:
+  - type: Documentation
+    url: https://premion.com/wp-json
+common:
+  - type: LLMsTxt
+    url: llms/tegna-llms.txt
+  - type: Authentication
+    url: authentication/tegna-authentication.yml
+  - type: Conventions
+    url: conventions/tegna-conventions.yml
+  - type: ErrorCatalog
+    url: errors/tegna-problem-types.yml
+  - type: DataModel
+    url: data-model/tegna-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/tegna-lifecycle.yml
+  - type: Conformance
+    url: conformance/tegna-conformance.yml
+  - type: Packages
+    url: packages/tegna-packages.yml
+  - type: AgenticAccess
+    url: agentic-access/tegna-agentic-access.yml
+  - type: AgentSkills
+    url: skills/_index.yml
+  - type: AgentSkill
+    url: skills/tegna-track-tegna-press-releases.md
+  - type: AgentSkill
+    url: skills/tegna-map-tegna-content-surface.md
+  - type: DomainSecurity
+    url: security/tegna-domain-security.yml
+  - type: Vocabulary
+    url: vocabulary/tegna-vocabulary.yml
+  - type: SpectralRules
+    url: rules/tegna-rules.yml
+  - type: Plans
+    url: plans/tegna-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/tegna-rate-limits.yml
+  - type: FinOps
+    url: finops/tegna-finops.yml
+  - url: https://www.tegna.com
+    name: TEGNA
+    type: Website
+    description: TEGNA corporate website.
+  - url: https://www.nexstar.tv/
+    name: Nexstar Media Group
+    type: Website
+    description: Parent company Nexstar Media Group website.
+  - url: https://www.tegna.com/advertise/
+    name: Advertise With TEGNA
+    type: Advertising
+    description: Advertising solutions overview for TEGNA.
+  - url: https://www.tegna.com/advertise/solutions/digital/
+    name: TEGNA Digital Advertising Solutions
+    type: Documentation
+    description: Digital advertising solutions page covering TEGNA AudienceOne. Marketing content, not developer documentation.
+  - url: https://www.tegna.com/advertise/solutions/broadcast/
+    name: TEGNA Broadcast Advertising
+    type: Documentation
+    description: Broadcast TV advertising solutions from TEGNA.
+  - url: https://www.tegna.com/advertise/solutions/streaming/
+    name: TEGNA Streaming/OTT Advertising
+    type: Documentation
+    description: OTT and streaming advertising solutions from TEGNA.
+  - url: https://premion.com/
+    name: Premion OTT Advertising
+    type: Website
+    description: TEGNA's Premion OTT advertising platform.
+  - url: https://www.tegna.com/contact/
+    name: Contact TEGNA
+    type: Support
+    description: Corporate contact page. TEGNA publishes no developer support channel.
+  - url: https://tegnadigital.atlassian.net/servicedesk/customer/portal/17
+    name: Premion Central Service Desk
+    type: HelpCenter
+    description: Atlassian Jira Service Desk for Premion customers. Customer portal, login-gated.
+  - url: https://www.tegna.com/terms-of-service/
+    name: TEGNA Terms of Service
+    type: TermsOfService
+    description: Corporate terms of service.
+  - url: https://www.tegna.com/privacy-policy/
+    name: TEGNA Privacy Policy
+    type: PrivacyPolicy
+    description: Corporate privacy policy.
+  - url: https://premion.com/privacy-policy/
+    name: Premion Privacy Policy
+    type: PrivacyPolicy
+    description: Privacy policy for the Premion OTT/CTV advertising platform.
+  - url: https://www.linkedin.com/company/tegna
+    name: TEGNA on LinkedIn
+    type: LinkedIn
+    description: TEGNA LinkedIn company page.
+  - url: https://www.tegna.com/press/
+    name: TEGNA Press
+    type: Blog
+    description: TEGNA corporate press releases.
+  - url: https://www.tegna.com/feed/
+    type: Blog
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
+x-coverage:
+  state: covered
+  checked: '2026-08-13'
+  detail: >-
+    TEGNA runs no developer program, but STEP 0b contract discovery found a real machine-readable
+    surface: the public WordPress REST API on www.tegna.com (405 routes) and premion.com (290
+    routes), both verified callable. The nine pre-existing OpenAPI documents were quarantined to
+    _scaffold/ because their declared host api.tegna.com is NXDOMAIN.
+  evidence:
+    - url: https://www.tegna.com/wp-json/
+      status: 200
+    - url: https://premion.com/wp-json/
+      status: 200
+    - url: https://www.tegna.com/llms.txt
+      status: 200
+    - url: https://api.premion.com/api
+      status: 401
+    - url: https://api.tegna.com/
+      status: 0
+      note: NXDOMAIN — no A record, connection never established

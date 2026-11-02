@@ -1,0 +1,72 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: TEGNA
+providerId: tegna
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Broadcasting
+  - Media
+  - Television
+  - Digital Advertising
+  - OTT
+  - CTV
+  - Fortune 500
+description: TEGNA sells broadcast, OTT/CTV, and digital advertising inventory through TEGNA
+  Marketing Solutions, Premion, and AudienceOne. There is no public self-service developer pricing
+  for TEGNA's advertising APIs; campaigns are transacted through agency / direct-buy contracts and
+  programmatic deal IDs negotiated with TEGNA's sales team.
+sources:
+  - https://www.tegna.com/
+  - https://www.premion.com/
+notes: TEGNA does not publish a public price list or developer plan ladder for its advertising APIs.
+  Inventory is sold via insertion orders, programmatic guaranteed deals, and PMP deals; no
+  self-serve free / pro / enterprise tier exists. The original scaffold tiers were not
+  representative and have been removed.
+plans:
+  - id: tegna-contact-sales
+    name: Contact Sales
+    type: enterprise
+    description: All TEGNA advertising integrations (AudienceOne, Premion OTT/CTV, broadcast)
+      transact through direct sales or programmatic deals. Pricing is negotiated per campaign and
+      market.
+    entries:
+      - label: Negotiated Media Buy
+        name: contact_sales
+        type: flat
+        metric: varies
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: TEGNA AudienceOne
+      - name: Premion OTT / CTV
+      - name: Broadcast Inventory
+      - name: Custom Commercial Terms
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - negotiated
+  plans:
+  - name: Contact Sales
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - per-use
